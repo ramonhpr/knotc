@@ -45,8 +45,10 @@ func (k *knotListener) ExitThingContent(ctx *generated.ThingContentContext) {
 	k.currentSensor++
 }
 
-func (k *knotListener) ExitTemperatureUnits(ctx *generated.TemperatureUnitsContext) {
-	k.sensors[k.currentSensor].unit = ctx.GetOp().GetText();
+const unitFmt = "%s in %s"
+
+func (k *knotListener) ExitUnitTypeOptions(ctx *generated.UnitTypeOptionsContext) {
+	fmt.Sscanf(ctx.GetText(), unitFmt, &k.sensors[k.currentSensor].typeUnit, &k.sensors[k.currentSensor].unit)
 }
 
 func (k *knotListener) ExitValueOptions(ctx *generated.ValueOptionsContext) {
@@ -81,10 +83,21 @@ func compileToZephyr(l knotListener, path string) {
 
 
 	for _, sensor := range l.sensors {
-		if !sensor.isSensor {
-			fmt.Printf(string(variable), strings.ToLower(sensor.name), sensor.value)
-			fmt.Println()
+		defaultValue := ""
+		value := sensor.value
+		switch sensor.value {
+		case "int":
+			defaultValue = "0"
+		case "bool":
+			defaultValue = "true"
+		case "float":
+			defaultValue = "0.0"
+		case "bytes":
+			defaultValue = "NULL"
+			value = "char[]"
 		}
+		fmt.Printf(string(variable), strings.ToLower(sensor.name), value, defaultValue)
+		fmt.Println()
 	}
 
 	cb, err := ioutil.ReadFile(path + "callback_write_template.c")
@@ -99,21 +112,29 @@ func compileToZephyr(l knotListener, path string) {
 		}
 	}
 
+	setupContent, err := ioutil.ReadFile(path + "setup_content.c")
+	if err != nil {
+		panic(err)
+	}
+
+	setupContentFmt := string(setupContent)
+	setupOut := ""
+
+	for id, sensor := range l.sensors {
+		unit := sensor.unit
+		if sensor.unit == "" {
+			unit = "NOT_APPLICABLE"
+		}
+		setupOut += fmt.Sprintf(setupContentFmt + "\n\n", strings.ToLower(sensor.name), strings.ToUpper(sensor.name), id, strings.ToUpper(sensor.typeUnit), strings.ToUpper(sensor.value), unit)
+	}
+
 	last, err := ioutil.ReadFile(path + "setup_loop_template.c")
 	if err != nil {
 		panic(err)
 	}
 
-	for id, sensor := range l.sensors {
-		if !sensor.isSensor {
-			unit := sensor.unit
-			if sensor.unit == "" {
-				unit = "NOT_APPLICABLE"
-			}
-			fmt.Printf(string(last), strings.ToLower(sensor.name), strings.ToUpper(sensor.name), id, strings.ToUpper(sensor.typeUnit), strings.ToUpper(sensor.value), unit)
-			fmt.Println()
-		}
-	}
+	fmt.Printf(string(last), setupOut)
+	fmt.Println()
 
 	fmt.Println("------prj.conf-----")
 	data, err = ioutil.ReadFile(path + "prj.conf")

@@ -35,10 +35,154 @@ func (v *BaseKnotVisitor) VisitVoltagesUnits(ctx *VoltagesUnitsContext) interfac
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseKnotVisitor) VisitCurrent(ctx *CurrentContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitCurrentUnits(ctx *CurrentUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitResistance(ctx *ResistanceContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitResistanceUnits(ctx *ResistanceUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitPower(ctx *PowerContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitPowerUnits(ctx *PowerUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseKnotVisitor) VisitTemperature(ctx *TemperatureContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
 func (v *BaseKnotVisitor) VisitTemperatureUnits(ctx *TemperatureUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitLuminosity(ctx *LuminosityContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitLuminosityUnits(ctx *LuminosityUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitTime(ctx *TimeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitTimeUnits(ctx *TimeUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitMass(ctx *MassContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitMassUnits(ctx *MassUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitPressure(ctx *PressureContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitPressureUnits(ctx *PressureUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitDistance(ctx *DistanceContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitDistanceUnits(ctx *DistanceUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitAngle(ctx *AngleContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitAngleUnits(ctx *AngleUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitVolume(ctx *VolumeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitVolumeUnits(ctx *VolumeUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitArea(ctx *AreaContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitAreaUnits(ctx *AreaUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitRain(ctx *RainContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitRainUnits(ctx *RainUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitDensity(ctx *DensityContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitDensityUnits(ctx *DensityUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitLatitude(ctx *LatitudeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitLatitudeUnits(ctx *LatitudeUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitLongitude(ctx *LongitudeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitLongitudeUnits(ctx *LongitudeUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitSpeed(ctx *SpeedContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitSpeedUnits(ctx *SpeedUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitVolumeflow(ctx *VolumeflowContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitVolumeflowUnits(ctx *VolumeflowUnitsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitEnergy(ctx *EnergyContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitEnergyUnits(ctx *EnergyUnitsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
