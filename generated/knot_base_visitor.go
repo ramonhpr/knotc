@@ -11,19 +11,11 @@ func (v *BaseKnotVisitor) VisitStart(ctx *StartContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseKnotVisitor) VisitName(ctx *NameContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
 func (v *BaseKnotVisitor) VisitDefinition(ctx *DefinitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseKnotVisitor) VisitInnerContent(ctx *InnerContentContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseKnotVisitor) VisitValue(ctx *ValueContext) interface{} {
+func (v *BaseKnotVisitor) VisitThingContent(ctx *ThingContentContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -31,11 +23,7 @@ func (v *BaseKnotVisitor) VisitValueOptions(ctx *ValueOptionsContext) interface{
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseKnotVisitor) VisitTypeRule(ctx *TypeRuleContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseKnotVisitor) VisitTypeOptions(ctx *TypeOptionsContext) interface{} {
+func (v *BaseKnotVisitor) VisitUnitTypeOptions(ctx *UnitTypeOptionsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -43,11 +31,11 @@ func (v *BaseKnotVisitor) VisitVoltage(ctx *VoltageContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseKnotVisitor) VisitTemperature(ctx *TemperatureContext) interface{} {
+func (v *BaseKnotVisitor) VisitVoltagesUnits(ctx *VoltagesUnitsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseKnotVisitor) VisitVoltagesUnits(ctx *VoltagesUnitsContext) interface{} {
+func (v *BaseKnotVisitor) VisitTemperature(ctx *TemperatureContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 

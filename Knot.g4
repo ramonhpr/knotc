@@ -1,6 +1,7 @@
 grammar Knot;
 
 // Tokens
+THING: 'thing';
 SENSOR: 'sensor';
 ACTUATOR: 'actuator';
 VALUE: 'value';
@@ -44,8 +45,10 @@ COMMAND: 'command';
 
 // Lexical elements
 fragment Letter :[A-Za-z_];
-fragment DecimalDigit   :[0-9];
+fragment DecimalDigit   :[0-9]+;
 fragment DecimalLit:   [1-9] DecimalDigit*;
+fragment NUMBER: ('0' .. '9') + ('.' ('0' .. '9') +)?;
+fragment UNSIGNED_INTEGER: ('0' .. '9')+;
 fragment Ident   : Letter (Letter | DecimalDigit)*;
 IDENTIFIER     : Ident ;
 ID: DecimalLit;
@@ -53,17 +56,14 @@ ID: DecimalLit;
 // TODO: Add rule to data config event flag
 
 // Rules
-start: name definition+ EOF;
-name: 'name' '"'  IDENTIFIER+ '"' END_CHAR;
-definition: op=(SENSOR|ACTUATOR) '"' IDENTIFIER+ '"' '{' (innerContent)+ '}';
-innerContent: value typeRule;
-value: VALUE SEPARATOR valueOptions END_CHAR;
+start: definition+ EOF;
+definition: THING IDENTIFIER '{' thingContent+ '}';
+thingContent: op=(SENSOR|ACTUATOR) valueOptions IDENTIFIER '(' unitTypeOptions ')' END_CHAR;
 valueOptions: op=(BOOL | INT | FLOAT | BYTES);
-typeRule:  TYPE SEPARATOR op=typeOptions END_CHAR;
-typeOptions: ( voltage | CURRENT | RESISTANCE | POWER | temperature | RELATIVEHUMIDITY | LUMINOSITY | 
+unitTypeOptions: ( voltage | CURRENT | RESISTANCE | POWER | temperature | RELATIVEHUMIDITY | LUMINOSITY | 
 TIME| MASS | PRESSURE | DISTANCE | ANGLE | VOLUME | AREA | RAIN | DENSITY | LATITUDE | LONGITUDE | 
 SPEED | VOLUMEFLOW | ENERGY | SWITCH | PRESENCE | COMMAND);
 voltage: 'voltage in ' voltagesUnits;
-temperature: 'temperature in ' temperatureUnits;
 voltagesUnits: op=('V' | 'mV' | 'kV');
+temperature: 'temperature in ' temperatureUnits;
 temperatureUnits: op=('F' | 'C' | 'K');

@@ -31,24 +31,16 @@ func (k *knotListener) EnterStart(ctx *generated.StartContext) {
 }
 
 
-func (k *knotListener) EnterName(ctx *generated.NameContext) {
-	name := ""
-	for _, id := range ctx.AllIDENTIFIER() {
-		name += id.GetText() + ""
-	}
-	k.name = name
+func (k *knotListener) EnterDefinition(ctx *generated.DefinitionContext) {
+	k.name = ctx.IDENTIFIER().GetText()
 }
 
-func (k *knotListener) EnterDefinition(ctx *generated.DefinitionContext) {
+func (k *knotListener) EnterThingContent(ctx *generated.ThingContentContext) {
 	k.sensors = append(k.sensors, sensorType{})
 }
 
-func (k *knotListener) ExitDefinition(ctx *generated.DefinitionContext) {
-	name := ""
-	for _, id := range ctx.AllIDENTIFIER() {
-		name += id.GetText() + ""
-	}
-	k.sensors[k.currentSensor].name = name
+func (k *knotListener) ExitThingContent(ctx *generated.ThingContentContext) {
+	k.sensors[k.currentSensor].name = ctx.IDENTIFIER().GetText()
 	k.sensors[k.currentSensor].isSensor = ctx.GetOp().GetTokenType() == generated.KnotParserSENSOR
 	k.currentSensor++
 }

@@ -26,29 +26,17 @@ func (s *BaseKnotListener) EnterStart(ctx *StartContext) {}
 // ExitStart is called when production start is exited.
 func (s *BaseKnotListener) ExitStart(ctx *StartContext) {}
 
-// EnterName is called when production name is entered.
-func (s *BaseKnotListener) EnterName(ctx *NameContext) {}
-
-// ExitName is called when production name is exited.
-func (s *BaseKnotListener) ExitName(ctx *NameContext) {}
-
 // EnterDefinition is called when production definition is entered.
 func (s *BaseKnotListener) EnterDefinition(ctx *DefinitionContext) {}
 
 // ExitDefinition is called when production definition is exited.
 func (s *BaseKnotListener) ExitDefinition(ctx *DefinitionContext) {}
 
-// EnterInnerContent is called when production innerContent is entered.
-func (s *BaseKnotListener) EnterInnerContent(ctx *InnerContentContext) {}
+// EnterThingContent is called when production thingContent is entered.
+func (s *BaseKnotListener) EnterThingContent(ctx *ThingContentContext) {}
 
-// ExitInnerContent is called when production innerContent is exited.
-func (s *BaseKnotListener) ExitInnerContent(ctx *InnerContentContext) {}
-
-// EnterValue is called when production value is entered.
-func (s *BaseKnotListener) EnterValue(ctx *ValueContext) {}
-
-// ExitValue is called when production value is exited.
-func (s *BaseKnotListener) ExitValue(ctx *ValueContext) {}
+// ExitThingContent is called when production thingContent is exited.
+func (s *BaseKnotListener) ExitThingContent(ctx *ThingContentContext) {}
 
 // EnterValueOptions is called when production valueOptions is entered.
 func (s *BaseKnotListener) EnterValueOptions(ctx *ValueOptionsContext) {}
@@ -56,17 +44,11 @@ func (s *BaseKnotListener) EnterValueOptions(ctx *ValueOptionsContext) {}
 // ExitValueOptions is called when production valueOptions is exited.
 func (s *BaseKnotListener) ExitValueOptions(ctx *ValueOptionsContext) {}
 
-// EnterTypeRule is called when production typeRule is entered.
-func (s *BaseKnotListener) EnterTypeRule(ctx *TypeRuleContext) {}
+// EnterUnitTypeOptions is called when production unitTypeOptions is entered.
+func (s *BaseKnotListener) EnterUnitTypeOptions(ctx *UnitTypeOptionsContext) {}
 
-// ExitTypeRule is called when production typeRule is exited.
-func (s *BaseKnotListener) ExitTypeRule(ctx *TypeRuleContext) {}
-
-// EnterTypeOptions is called when production typeOptions is entered.
-func (s *BaseKnotListener) EnterTypeOptions(ctx *TypeOptionsContext) {}
-
-// ExitTypeOptions is called when production typeOptions is exited.
-func (s *BaseKnotListener) ExitTypeOptions(ctx *TypeOptionsContext) {}
+// ExitUnitTypeOptions is called when production unitTypeOptions is exited.
+func (s *BaseKnotListener) ExitUnitTypeOptions(ctx *UnitTypeOptionsContext) {}
 
 // EnterVoltage is called when production voltage is entered.
 func (s *BaseKnotListener) EnterVoltage(ctx *VoltageContext) {}
@@ -74,17 +56,17 @@ func (s *BaseKnotListener) EnterVoltage(ctx *VoltageContext) {}
 // ExitVoltage is called when production voltage is exited.
 func (s *BaseKnotListener) ExitVoltage(ctx *VoltageContext) {}
 
-// EnterTemperature is called when production temperature is entered.
-func (s *BaseKnotListener) EnterTemperature(ctx *TemperatureContext) {}
-
-// ExitTemperature is called when production temperature is exited.
-func (s *BaseKnotListener) ExitTemperature(ctx *TemperatureContext) {}
-
 // EnterVoltagesUnits is called when production voltagesUnits is entered.
 func (s *BaseKnotListener) EnterVoltagesUnits(ctx *VoltagesUnitsContext) {}
 
 // ExitVoltagesUnits is called when production voltagesUnits is exited.
 func (s *BaseKnotListener) ExitVoltagesUnits(ctx *VoltagesUnitsContext) {}
+
+// EnterTemperature is called when production temperature is entered.
+func (s *BaseKnotListener) EnterTemperature(ctx *TemperatureContext) {}
+
+// ExitTemperature is called when production temperature is exited.
+func (s *BaseKnotListener) ExitTemperature(ctx *TemperatureContext) {}
 
 // EnterTemperatureUnits is called when production temperatureUnits is entered.
 func (s *BaseKnotListener) EnterTemperatureUnits(ctx *TemperatureUnitsContext) {}
