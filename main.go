@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
 	"strings"
 
 	"github.com/antlr/antlr4/runtime/Go/antlr"
@@ -145,6 +146,14 @@ func compileToZephyr(l knotListener, path string) {
 	fmt.Printf(string(data), l.name, len(l.sensors))
 }
 
+type exitErrorListener struct {
+	*antlr.ConsoleErrorListener
+}
+
+func (c *exitErrorListener) SyntaxError(recognizer antlr.Recognizer, offendingSymbol interface{}, line, column int, msg string, e antlr.RecognitionException) {
+	os.Exit(1)
+}
+
 func main() {
 	// Setup the input
 	data, err := ioutil.ReadFile("./blink.knot")
@@ -159,6 +168,7 @@ func main() {
 	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 
 	p := generated.NewKnotParser(stream)
+	p.AddErrorListener(new(exitErrorListener))
 
 	var listener knotListener
 	antlr.ParseTreeWalkerDefault.Walk(&listener, p.Start())
