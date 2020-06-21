@@ -19,8 +19,20 @@ type KnotVisitor interface {
 	// Visit a parse tree produced by KnotParser#valueOptions.
 	VisitValueOptions(ctx *ValueOptionsContext) interface{}
 
+	// Visit a parse tree produced by KnotParser#boolOpt.
+	VisitBoolOpt(ctx *BoolOptContext) interface{}
+
+	// Visit a parse tree produced by KnotParser#numberOpt.
+	VisitNumberOpt(ctx *NumberOptContext) interface{}
+
+	// Visit a parse tree produced by KnotParser#bytesOpt.
+	VisitBytesOpt(ctx *BytesOptContext) interface{}
+
 	// Visit a parse tree produced by KnotParser#unitTypeOptions.
 	VisitUnitTypeOptions(ctx *UnitTypeOptionsContext) interface{}
+
+	// Visit a parse tree produced by KnotParser#logicUnits.
+	VisitLogicUnits(ctx *LogicUnitsContext) interface{}
 
 	// Visit a parse tree produced by KnotParser#voltage.
 	VisitVoltage(ctx *VoltageContext) interface{}

@@ -15,7 +15,7 @@ var _ = reflect.Copy
 var _ = strconv.Itoa
 
 var parserATN = []uint16{
-	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 100, 246,
+	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 99, 272,
 	4, 2, 9, 2, 4, 3, 9, 3, 4, 4, 9, 4, 4, 5, 9, 5, 4, 6, 9, 6, 4, 7, 9, 7,
 	4, 8, 9, 8, 4, 9, 9, 9, 4, 10, 9, 10, 4, 11, 9, 11, 4, 12, 9, 12, 4, 13,
 	9, 13, 4, 14, 9, 14, 4, 15, 9, 15, 4, 16, 9, 16, 4, 17, 9, 17, 4, 18, 9,
@@ -24,133 +24,143 @@ var parserATN = []uint16{
 	29, 9, 29, 4, 30, 9, 30, 4, 31, 9, 31, 4, 32, 9, 32, 4, 33, 9, 33, 4, 34,
 	9, 34, 4, 35, 9, 35, 4, 36, 9, 36, 4, 37, 9, 37, 4, 38, 9, 38, 4, 39, 9,
 	39, 4, 40, 9, 40, 4, 41, 9, 41, 4, 42, 9, 42, 4, 43, 9, 43, 4, 44, 9, 44,
-	4, 45, 9, 45, 4, 46, 9, 46, 3, 2, 6, 2, 94, 10, 2, 13, 2, 14, 2, 95, 3,
-	2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 6, 3, 104, 10, 3, 13, 3, 14, 3, 105, 3,
-	3, 3, 3, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 5, 3, 5, 3,
-	6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3,
-	6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 5,
-	6, 144, 10, 6, 3, 7, 3, 7, 3, 7, 3, 8, 3, 8, 3, 9, 3, 9, 3, 9, 3, 10, 3,
-	10, 3, 11, 3, 11, 3, 11, 3, 12, 3, 12, 3, 13, 3, 13, 3, 13, 3, 14, 3, 14,
-	3, 15, 3, 15, 3, 15, 3, 16, 3, 16, 3, 17, 3, 17, 3, 17, 3, 18, 3, 18, 3,
-	19, 3, 19, 3, 19, 3, 20, 3, 20, 3, 21, 3, 21, 3, 21, 3, 22, 3, 22, 3, 23,
-	3, 23, 3, 23, 3, 24, 3, 24, 3, 25, 3, 25, 3, 25, 3, 26, 3, 26, 3, 27, 3,
-	27, 3, 27, 3, 28, 3, 28, 3, 29, 3, 29, 3, 29, 3, 30, 3, 30, 3, 31, 3, 31,
-	3, 31, 3, 32, 3, 32, 3, 33, 3, 33, 3, 33, 3, 34, 3, 34, 3, 35, 3, 35, 3,
-	35, 3, 36, 3, 36, 3, 37, 3, 37, 3, 37, 3, 38, 3, 38, 3, 39, 3, 39, 3, 39,
-	3, 40, 3, 40, 3, 41, 3, 41, 3, 41, 3, 42, 3, 42, 3, 43, 3, 43, 3, 43, 3,
-	44, 3, 44, 3, 45, 3, 45, 3, 45, 3, 46, 3, 46, 3, 46, 2, 2, 47, 2, 4, 6,
-	8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42,
-	44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78,
-	80, 82, 84, 86, 88, 90, 2, 19, 3, 2, 85, 86, 3, 2, 91, 94, 3, 2, 8, 10,
-	3, 2, 12, 13, 3, 2, 17, 19, 3, 2, 21, 23, 3, 2, 25, 27, 3, 2, 29, 33, 3,
-	2, 35, 38, 3, 2, 40, 42, 3, 2, 44, 47, 3, 2, 49, 50, 3, 2, 52, 55, 3, 2,
-	57, 60, 4, 2, 30, 30, 68, 70, 4, 2, 25, 25, 72, 76, 3, 2, 78, 83, 2, 225,
-	2, 93, 3, 2, 2, 2, 4, 99, 3, 2, 2, 2, 6, 109, 3, 2, 2, 2, 8, 117, 3, 2,
-	2, 2, 10, 143, 3, 2, 2, 2, 12, 145, 3, 2, 2, 2, 14, 148, 3, 2, 2, 2, 16,
-	150, 3, 2, 2, 2, 18, 153, 3, 2, 2, 2, 20, 155, 3, 2, 2, 2, 22, 158, 3,
-	2, 2, 2, 24, 160, 3, 2, 2, 2, 26, 163, 3, 2, 2, 2, 28, 165, 3, 2, 2, 2,
-	30, 168, 3, 2, 2, 2, 32, 170, 3, 2, 2, 2, 34, 173, 3, 2, 2, 2, 36, 175,
-	3, 2, 2, 2, 38, 178, 3, 2, 2, 2, 40, 180, 3, 2, 2, 2, 42, 183, 3, 2, 2,
-	2, 44, 185, 3, 2, 2, 2, 46, 188, 3, 2, 2, 2, 48, 190, 3, 2, 2, 2, 50, 193,
-	3, 2, 2, 2, 52, 195, 3, 2, 2, 2, 54, 198, 3, 2, 2, 2, 56, 200, 3, 2, 2,
-	2, 58, 203, 3, 2, 2, 2, 60, 205, 3, 2, 2, 2, 62, 208, 3, 2, 2, 2, 64, 210,
-	3, 2, 2, 2, 66, 213, 3, 2, 2, 2, 68, 215, 3, 2, 2, 2, 70, 218, 3, 2, 2,
-	2, 72, 220, 3, 2, 2, 2, 74, 223, 3, 2, 2, 2, 76, 225, 3, 2, 2, 2, 78, 228,
-	3, 2, 2, 2, 80, 230, 3, 2, 2, 2, 82, 233, 3, 2, 2, 2, 84, 235, 3, 2, 2,
-	2, 86, 238, 3, 2, 2, 2, 88, 240, 3, 2, 2, 2, 90, 243, 3, 2, 2, 2, 92, 94,
-	5, 4, 3, 2, 93, 92, 3, 2, 2, 2, 94, 95, 3, 2, 2, 2, 95, 93, 3, 2, 2, 2,
-	95, 96, 3, 2, 2, 2, 96, 97, 3, 2, 2, 2, 97, 98, 7, 2, 2, 3, 98, 3, 3, 2,
-	2, 2, 99, 100, 7, 84, 2, 2, 100, 101, 7, 99, 2, 2, 101, 103, 7, 3, 2, 2,
-	102, 104, 5, 6, 4, 2, 103, 102, 3, 2, 2, 2, 104, 105, 3, 2, 2, 2, 105,
-	103, 3, 2, 2, 2, 105, 106, 3, 2, 2, 2, 106, 107, 3, 2, 2, 2, 107, 108,
-	7, 4, 2, 2, 108, 5, 3, 2, 2, 2, 109, 110, 9, 2, 2, 2, 110, 111, 5, 8, 5,
-	2, 111, 112, 7, 99, 2, 2, 112, 113, 7, 5, 2, 2, 113, 114, 5, 10, 6, 2,
-	114, 115, 7, 6, 2, 2, 115, 116, 7, 87, 2, 2, 116, 7, 3, 2, 2, 2, 117, 118,
-	9, 3, 2, 2, 118, 9, 3, 2, 2, 2, 119, 144, 5, 12, 7, 2, 120, 144, 5, 16,
-	9, 2, 121, 144, 5, 20, 11, 2, 122, 144, 5, 24, 13, 2, 123, 144, 5, 28,
-	15, 2, 124, 144, 5, 32, 17, 2, 125, 144, 5, 36, 19, 2, 126, 144, 5, 40,
-	21, 2, 127, 144, 5, 44, 23, 2, 128, 144, 5, 48, 25, 2, 129, 144, 5, 52,
-	27, 2, 130, 144, 5, 56, 29, 2, 131, 144, 5, 60, 31, 2, 132, 144, 5, 64,
-	33, 2, 133, 144, 5, 68, 35, 2, 134, 144, 5, 72, 37, 2, 135, 144, 5, 76,
-	39, 2, 136, 144, 5, 80, 41, 2, 137, 144, 5, 84, 43, 2, 138, 144, 5, 88,
-	45, 2, 139, 144, 7, 95, 2, 2, 140, 144, 7, 96, 2, 2, 141, 144, 7, 97, 2,
-	2, 142, 144, 7, 98, 2, 2, 143, 119, 3, 2, 2, 2, 143, 120, 3, 2, 2, 2, 143,
-	121, 3, 2, 2, 2, 143, 122, 3, 2, 2, 2, 143, 123, 3, 2, 2, 2, 143, 124,
-	3, 2, 2, 2, 143, 125, 3, 2, 2, 2, 143, 126, 3, 2, 2, 2, 143, 127, 3, 2,
-	2, 2, 143, 128, 3, 2, 2, 2, 143, 129, 3, 2, 2, 2, 143, 130, 3, 2, 2, 2,
-	143, 131, 3, 2, 2, 2, 143, 132, 3, 2, 2, 2, 143, 133, 3, 2, 2, 2, 143,
-	134, 3, 2, 2, 2, 143, 135, 3, 2, 2, 2, 143, 136, 3, 2, 2, 2, 143, 137,
-	3, 2, 2, 2, 143, 138, 3, 2, 2, 2, 143, 139, 3, 2, 2, 2, 143, 140, 3, 2,
-	2, 2, 143, 141, 3, 2, 2, 2, 143, 142, 3, 2, 2, 2, 144, 11, 3, 2, 2, 2,
-	145, 146, 7, 7, 2, 2, 146, 147, 5, 14, 8, 2, 147, 13, 3, 2, 2, 2, 148,
-	149, 9, 4, 2, 2, 149, 15, 3, 2, 2, 2, 150, 151, 7, 11, 2, 2, 151, 152,
-	5, 18, 10, 2, 152, 17, 3, 2, 2, 2, 153, 154, 9, 5, 2, 2, 154, 19, 3, 2,
-	2, 2, 155, 156, 7, 14, 2, 2, 156, 157, 5, 22, 12, 2, 157, 21, 3, 2, 2,
-	2, 158, 159, 7, 15, 2, 2, 159, 23, 3, 2, 2, 2, 160, 161, 7, 16, 2, 2, 161,
-	162, 5, 26, 14, 2, 162, 25, 3, 2, 2, 2, 163, 164, 9, 6, 2, 2, 164, 27,
-	3, 2, 2, 2, 165, 166, 7, 20, 2, 2, 166, 167, 5, 30, 16, 2, 167, 29, 3,
-	2, 2, 2, 168, 169, 9, 7, 2, 2, 169, 31, 3, 2, 2, 2, 170, 171, 7, 24, 2,
-	2, 171, 172, 5, 34, 18, 2, 172, 33, 3, 2, 2, 2, 173, 174, 9, 8, 2, 2, 174,
-	35, 3, 2, 2, 2, 175, 176, 7, 28, 2, 2, 176, 177, 5, 38, 20, 2, 177, 37,
-	3, 2, 2, 2, 178, 179, 9, 9, 2, 2, 179, 39, 3, 2, 2, 2, 180, 181, 7, 34,
-	2, 2, 181, 182, 5, 42, 22, 2, 182, 41, 3, 2, 2, 2, 183, 184, 9, 10, 2,
-	2, 184, 43, 3, 2, 2, 2, 185, 186, 7, 39, 2, 2, 186, 187, 5, 46, 24, 2,
-	187, 45, 3, 2, 2, 2, 188, 189, 9, 11, 2, 2, 189, 47, 3, 2, 2, 2, 190, 191,
-	7, 43, 2, 2, 191, 192, 5, 50, 26, 2, 192, 49, 3, 2, 2, 2, 193, 194, 9,
-	12, 2, 2, 194, 51, 3, 2, 2, 2, 195, 196, 7, 48, 2, 2, 196, 197, 5, 54,
-	28, 2, 197, 53, 3, 2, 2, 2, 198, 199, 9, 13, 2, 2, 199, 55, 3, 2, 2, 2,
-	200, 201, 7, 51, 2, 2, 201, 202, 5, 58, 30, 2, 202, 57, 3, 2, 2, 2, 203,
-	204, 9, 14, 2, 2, 204, 59, 3, 2, 2, 2, 205, 206, 7, 56, 2, 2, 206, 207,
-	5, 62, 32, 2, 207, 61, 3, 2, 2, 2, 208, 209, 9, 15, 2, 2, 209, 63, 3, 2,
-	2, 2, 210, 211, 7, 61, 2, 2, 211, 212, 5, 66, 34, 2, 212, 65, 3, 2, 2,
-	2, 213, 214, 7, 60, 2, 2, 214, 67, 3, 2, 2, 2, 215, 216, 7, 62, 2, 2, 216,
-	217, 5, 70, 36, 2, 217, 69, 3, 2, 2, 2, 218, 219, 7, 63, 2, 2, 219, 71,
-	3, 2, 2, 2, 220, 221, 7, 64, 2, 2, 221, 222, 5, 74, 38, 2, 222, 73, 3,
-	2, 2, 2, 223, 224, 7, 65, 2, 2, 224, 75, 3, 2, 2, 2, 225, 226, 7, 66, 2,
-	2, 226, 227, 5, 78, 40, 2, 227, 77, 3, 2, 2, 2, 228, 229, 7, 65, 2, 2,
-	229, 79, 3, 2, 2, 2, 230, 231, 7, 67, 2, 2, 231, 232, 5, 82, 42, 2, 232,
-	81, 3, 2, 2, 2, 233, 234, 9, 16, 2, 2, 234, 83, 3, 2, 2, 2, 235, 236, 7,
-	71, 2, 2, 236, 237, 5, 86, 44, 2, 237, 85, 3, 2, 2, 2, 238, 239, 9, 17,
-	2, 2, 239, 87, 3, 2, 2, 2, 240, 241, 7, 77, 2, 2, 241, 242, 5, 90, 46,
-	2, 242, 89, 3, 2, 2, 2, 243, 244, 9, 18, 2, 2, 244, 91, 3, 2, 2, 2, 5,
-	95, 105, 143,
+	4, 45, 9, 45, 4, 46, 9, 46, 4, 47, 9, 47, 4, 48, 9, 48, 4, 49, 9, 49, 4,
+	50, 9, 50, 3, 2, 6, 2, 102, 10, 2, 13, 2, 14, 2, 103, 3, 2, 3, 2, 3, 3,
+	3, 3, 3, 3, 3, 3, 6, 3, 112, 10, 3, 13, 3, 14, 3, 113, 3, 3, 3, 3, 3, 4,
+	3, 4, 3, 4, 3, 5, 3, 5, 3, 5, 5, 5, 124, 10, 5, 3, 6, 3, 6, 3, 6, 3, 6,
+	3, 6, 3, 6, 3, 6, 3, 7, 3, 7, 3, 7, 3, 7, 3, 7, 3, 7, 3, 7, 3, 8, 3, 8,
+	3, 8, 3, 8, 3, 8, 3, 8, 3, 8, 3, 9, 3, 9, 3, 9, 3, 9, 3, 9, 3, 9, 3, 9,
+	3, 9, 3, 9, 3, 9, 3, 9, 3, 9, 3, 9, 3, 9, 3, 9, 3, 9, 3, 9, 3, 9, 3, 9,
+	3, 9, 3, 9, 5, 9, 168, 10, 9, 3, 10, 3, 10, 3, 11, 3, 11, 3, 11, 3, 12,
+	3, 12, 3, 13, 3, 13, 3, 13, 3, 14, 3, 14, 3, 15, 3, 15, 3, 15, 3, 16, 3,
+	16, 3, 17, 3, 17, 3, 17, 3, 18, 3, 18, 3, 19, 3, 19, 3, 19, 3, 20, 3, 20,
+	3, 21, 3, 21, 3, 21, 3, 22, 3, 22, 3, 23, 3, 23, 3, 23, 3, 24, 3, 24, 3,
+	25, 3, 25, 3, 25, 3, 26, 3, 26, 3, 27, 3, 27, 3, 27, 3, 28, 3, 28, 3, 29,
+	3, 29, 3, 29, 3, 30, 3, 30, 3, 31, 3, 31, 3, 31, 3, 32, 3, 32, 3, 33, 3,
+	33, 3, 33, 3, 34, 3, 34, 3, 35, 3, 35, 3, 35, 3, 36, 3, 36, 3, 37, 3, 37,
+	3, 37, 3, 38, 3, 38, 3, 39, 3, 39, 3, 39, 3, 40, 3, 40, 3, 41, 3, 41, 3,
+	41, 3, 42, 3, 42, 3, 43, 3, 43, 3, 43, 3, 44, 3, 44, 3, 45, 3, 45, 3, 45,
+	3, 46, 3, 46, 3, 47, 3, 47, 3, 47, 3, 48, 3, 48, 3, 49, 3, 49, 3, 49, 3,
+	50, 3, 50, 3, 50, 2, 2, 51, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24,
+	26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60,
+	62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96,
+	98, 2, 21, 3, 2, 88, 89, 3, 2, 95, 96, 3, 2, 8, 9, 3, 2, 95, 97, 3, 2,
+	12, 14, 3, 2, 16, 17, 3, 2, 21, 23, 3, 2, 25, 27, 3, 2, 29, 31, 3, 2, 33,
+	37, 3, 2, 39, 42, 3, 2, 44, 46, 3, 2, 48, 51, 3, 2, 53, 54, 3, 2, 56, 59,
+	3, 2, 61, 64, 4, 2, 34, 34, 71, 73, 4, 2, 29, 29, 75, 79, 3, 2, 81, 86,
+	2, 246, 2, 101, 3, 2, 2, 2, 4, 107, 3, 2, 2, 2, 6, 117, 3, 2, 2, 2, 8,
+	123, 3, 2, 2, 2, 10, 125, 3, 2, 2, 2, 12, 132, 3, 2, 2, 2, 14, 139, 3,
+	2, 2, 2, 16, 167, 3, 2, 2, 2, 18, 169, 3, 2, 2, 2, 20, 171, 3, 2, 2, 2,
+	22, 174, 3, 2, 2, 2, 24, 176, 3, 2, 2, 2, 26, 179, 3, 2, 2, 2, 28, 181,
+	3, 2, 2, 2, 30, 184, 3, 2, 2, 2, 32, 186, 3, 2, 2, 2, 34, 189, 3, 2, 2,
+	2, 36, 191, 3, 2, 2, 2, 38, 194, 3, 2, 2, 2, 40, 196, 3, 2, 2, 2, 42, 199,
+	3, 2, 2, 2, 44, 201, 3, 2, 2, 2, 46, 204, 3, 2, 2, 2, 48, 206, 3, 2, 2,
+	2, 50, 209, 3, 2, 2, 2, 52, 211, 3, 2, 2, 2, 54, 214, 3, 2, 2, 2, 56, 216,
+	3, 2, 2, 2, 58, 219, 3, 2, 2, 2, 60, 221, 3, 2, 2, 2, 62, 224, 3, 2, 2,
+	2, 64, 226, 3, 2, 2, 2, 66, 229, 3, 2, 2, 2, 68, 231, 3, 2, 2, 2, 70, 234,
+	3, 2, 2, 2, 72, 236, 3, 2, 2, 2, 74, 239, 3, 2, 2, 2, 76, 241, 3, 2, 2,
+	2, 78, 244, 3, 2, 2, 2, 80, 246, 3, 2, 2, 2, 82, 249, 3, 2, 2, 2, 84, 251,
+	3, 2, 2, 2, 86, 254, 3, 2, 2, 2, 88, 256, 3, 2, 2, 2, 90, 259, 3, 2, 2,
+	2, 92, 261, 3, 2, 2, 2, 94, 264, 3, 2, 2, 2, 96, 266, 3, 2, 2, 2, 98, 269,
+	3, 2, 2, 2, 100, 102, 5, 4, 3, 2, 101, 100, 3, 2, 2, 2, 102, 103, 3, 2,
+	2, 2, 103, 101, 3, 2, 2, 2, 103, 104, 3, 2, 2, 2, 104, 105, 3, 2, 2, 2,
+	105, 106, 7, 2, 2, 3, 106, 3, 3, 2, 2, 2, 107, 108, 7, 87, 2, 2, 108, 109,
+	7, 98, 2, 2, 109, 111, 7, 3, 2, 2, 110, 112, 5, 6, 4, 2, 111, 110, 3, 2,
+	2, 2, 112, 113, 3, 2, 2, 2, 113, 111, 3, 2, 2, 2, 113, 114, 3, 2, 2, 2,
+	114, 115, 3, 2, 2, 2, 115, 116, 7, 4, 2, 2, 116, 5, 3, 2, 2, 2, 117, 118,
+	9, 2, 2, 2, 118, 119, 5, 8, 5, 2, 119, 7, 3, 2, 2, 2, 120, 124, 5, 10,
+	6, 2, 121, 124, 5, 12, 7, 2, 122, 124, 5, 14, 8, 2, 123, 120, 3, 2, 2,
+	2, 123, 121, 3, 2, 2, 2, 123, 122, 3, 2, 2, 2, 124, 9, 3, 2, 2, 2, 125,
+	126, 7, 5, 2, 2, 126, 127, 7, 98, 2, 2, 127, 128, 7, 6, 2, 2, 128, 129,
+	9, 3, 2, 2, 129, 130, 7, 7, 2, 2, 130, 131, 7, 90, 2, 2, 131, 11, 3, 2,
+	2, 2, 132, 133, 9, 4, 2, 2, 133, 134, 7, 98, 2, 2, 134, 135, 7, 6, 2, 2,
+	135, 136, 5, 16, 9, 2, 136, 137, 7, 7, 2, 2, 137, 138, 7, 90, 2, 2, 138,
+	13, 3, 2, 2, 2, 139, 140, 7, 10, 2, 2, 140, 141, 7, 98, 2, 2, 141, 142,
+	7, 6, 2, 2, 142, 143, 7, 97, 2, 2, 143, 144, 7, 7, 2, 2, 144, 145, 7, 90,
+	2, 2, 145, 15, 3, 2, 2, 2, 146, 168, 5, 20, 11, 2, 147, 168, 5, 24, 13,
+	2, 148, 168, 5, 28, 15, 2, 149, 168, 5, 32, 17, 2, 150, 168, 5, 36, 19,
+	2, 151, 168, 5, 40, 21, 2, 152, 168, 5, 44, 23, 2, 153, 168, 5, 48, 25,
+	2, 154, 168, 5, 52, 27, 2, 155, 168, 5, 56, 29, 2, 156, 168, 5, 60, 31,
+	2, 157, 168, 5, 64, 33, 2, 158, 168, 5, 68, 35, 2, 159, 168, 5, 72, 37,
+	2, 160, 168, 5, 76, 39, 2, 161, 168, 5, 80, 41, 2, 162, 168, 5, 84, 43,
+	2, 163, 168, 5, 88, 45, 2, 164, 168, 5, 92, 47, 2, 165, 168, 5, 96, 49,
+	2, 166, 168, 7, 94, 2, 2, 167, 146, 3, 2, 2, 2, 167, 147, 3, 2, 2, 2, 167,
+	148, 3, 2, 2, 2, 167, 149, 3, 2, 2, 2, 167, 150, 3, 2, 2, 2, 167, 151,
+	3, 2, 2, 2, 167, 152, 3, 2, 2, 2, 167, 153, 3, 2, 2, 2, 167, 154, 3, 2,
+	2, 2, 167, 155, 3, 2, 2, 2, 167, 156, 3, 2, 2, 2, 167, 157, 3, 2, 2, 2,
+	167, 158, 3, 2, 2, 2, 167, 159, 3, 2, 2, 2, 167, 160, 3, 2, 2, 2, 167,
+	161, 3, 2, 2, 2, 167, 162, 3, 2, 2, 2, 167, 163, 3, 2, 2, 2, 167, 164,
+	3, 2, 2, 2, 167, 165, 3, 2, 2, 2, 167, 166, 3, 2, 2, 2, 168, 17, 3, 2,
+	2, 2, 169, 170, 9, 5, 2, 2, 170, 19, 3, 2, 2, 2, 171, 172, 7, 11, 2, 2,
+	172, 173, 5, 22, 12, 2, 173, 21, 3, 2, 2, 2, 174, 175, 9, 6, 2, 2, 175,
+	23, 3, 2, 2, 2, 176, 177, 7, 15, 2, 2, 177, 178, 5, 26, 14, 2, 178, 25,
+	3, 2, 2, 2, 179, 180, 9, 7, 2, 2, 180, 27, 3, 2, 2, 2, 181, 182, 7, 18,
+	2, 2, 182, 183, 5, 30, 16, 2, 183, 29, 3, 2, 2, 2, 184, 185, 7, 19, 2,
+	2, 185, 31, 3, 2, 2, 2, 186, 187, 7, 20, 2, 2, 187, 188, 5, 34, 18, 2,
+	188, 33, 3, 2, 2, 2, 189, 190, 9, 8, 2, 2, 190, 35, 3, 2, 2, 2, 191, 192,
+	7, 24, 2, 2, 192, 193, 5, 38, 20, 2, 193, 37, 3, 2, 2, 2, 194, 195, 9,
+	9, 2, 2, 195, 39, 3, 2, 2, 2, 196, 197, 7, 28, 2, 2, 197, 198, 5, 42, 22,
+	2, 198, 41, 3, 2, 2, 2, 199, 200, 9, 10, 2, 2, 200, 43, 3, 2, 2, 2, 201,
+	202, 7, 32, 2, 2, 202, 203, 5, 46, 24, 2, 203, 45, 3, 2, 2, 2, 204, 205,
+	9, 11, 2, 2, 205, 47, 3, 2, 2, 2, 206, 207, 7, 38, 2, 2, 207, 208, 5, 50,
+	26, 2, 208, 49, 3, 2, 2, 2, 209, 210, 9, 12, 2, 2, 210, 51, 3, 2, 2, 2,
+	211, 212, 7, 43, 2, 2, 212, 213, 5, 54, 28, 2, 213, 53, 3, 2, 2, 2, 214,
+	215, 9, 13, 2, 2, 215, 55, 3, 2, 2, 2, 216, 217, 7, 47, 2, 2, 217, 218,
+	5, 58, 30, 2, 218, 57, 3, 2, 2, 2, 219, 220, 9, 14, 2, 2, 220, 59, 3, 2,
+	2, 2, 221, 222, 7, 52, 2, 2, 222, 223, 5, 62, 32, 2, 223, 61, 3, 2, 2,
+	2, 224, 225, 9, 15, 2, 2, 225, 63, 3, 2, 2, 2, 226, 227, 7, 55, 2, 2, 227,
+	228, 5, 66, 34, 2, 228, 65, 3, 2, 2, 2, 229, 230, 9, 16, 2, 2, 230, 67,
+	3, 2, 2, 2, 231, 232, 7, 60, 2, 2, 232, 233, 5, 70, 36, 2, 233, 69, 3,
+	2, 2, 2, 234, 235, 9, 17, 2, 2, 235, 71, 3, 2, 2, 2, 236, 237, 7, 65, 2,
+	2, 237, 238, 5, 74, 38, 2, 238, 73, 3, 2, 2, 2, 239, 240, 7, 64, 2, 2,
+	240, 75, 3, 2, 2, 2, 241, 242, 7, 66, 2, 2, 242, 243, 5, 78, 40, 2, 243,
+	77, 3, 2, 2, 2, 244, 245, 7, 67, 2, 2, 245, 79, 3, 2, 2, 2, 246, 247, 7,
+	68, 2, 2, 247, 248, 5, 82, 42, 2, 248, 81, 3, 2, 2, 2, 249, 250, 7, 53,
+	2, 2, 250, 83, 3, 2, 2, 2, 251, 252, 7, 69, 2, 2, 252, 253, 5, 86, 44,
+	2, 253, 85, 3, 2, 2, 2, 254, 255, 7, 53, 2, 2, 255, 87, 3, 2, 2, 2, 256,
+	257, 7, 70, 2, 2, 257, 258, 5, 90, 46, 2, 258, 89, 3, 2, 2, 2, 259, 260,
+	9, 18, 2, 2, 260, 91, 3, 2, 2, 2, 261, 262, 7, 74, 2, 2, 262, 263, 5, 94,
+	48, 2, 263, 93, 3, 2, 2, 2, 264, 265, 9, 19, 2, 2, 265, 95, 3, 2, 2, 2,
+	266, 267, 7, 80, 2, 2, 267, 268, 5, 98, 50, 2, 268, 97, 3, 2, 2, 2, 269,
+	270, 9, 20, 2, 2, 270, 99, 3, 2, 2, 2, 6, 103, 113, 123, 167,
 }
 var deserializer = antlr.NewATNDeserializer(nil)
 var deserializedATN = deserializer.DeserializeFromUInt16(parserATN)
 
 var literalNames = []string{
-	"", "'{'", "'}'", "'('", "')'", "'voltage in '", "'V'", "'mV'", "'kV'",
-	"'current in '", "'A'", "'mA'", "'resistance in '", "'ohm'", "'power in '",
-	"'W'", "'kW'", "'MW'", "'temperature in '", "'F'", "'C'", "'K'", "'luminosity in '",
-	"'lm'", "'cd'", "'lx'", "'time in '", "'s'", "'ms'", "'us'", "'min'", "'h'",
-	"'mass in '", "'g'", "'kg'", "'lb'", "'oz'", "'pressure in '", "'Pa'",
-	"'psi'", "'bar'", "'distance in '", "'m'", "'cm'", "'mi'", "'in'", "'angle in '",
-	"'deg'", "'rad'", "'volume in '", "'l'", "'gal'", "'ml'", "'floz'", "'area in '",
-	"'m2'", "'ha'", "'ac'", "'mm'", "'rain in '", "'density in '", "'kgm3'",
-	"'latitude in '", "'degree'", "'longitude in '", "'speed in '", "'cms'",
-	"'kms'", "'mih'", "'volumeflow in '", "'m3s'", "'scmm'", "'ls'", "'ft3s'",
-	"'galm'", "'energy in '", "'J'", "'nm'", "'Wh'", "'KWh'", "'cal'", "'Kcal'",
-	"'thing'", "'sensor'", "'actuator'", "';'", "", "", "", "'bool'", "'int'",
-	"'float'", "'bytes'", "'relativehumidity'", "'switch'", "'presence'", "'command'",
+	"", "'{'", "'}'", "'bool'", "'('", "')'", "'int'", "'float'", "'bytes'",
+	"'voltage in '", "'V'", "'mV'", "'kV'", "'current in '", "'A'", "'mA'",
+	"'resistance in '", "'ohm'", "'power in '", "'W'", "'kW'", "'MW'", "'temperature in '",
+	"'F'", "'C'", "'K'", "'luminosity in '", "'lm'", "'cd'", "'lx'", "'time in '",
+	"'s'", "'ms'", "'us'", "'min'", "'h'", "'mass in '", "'g'", "'kg'", "'lb'",
+	"'oz'", "'pressure in '", "'Pa'", "'psi'", "'bar'", "'distance in '", "'m'",
+	"'cm'", "'mi'", "'in'", "'angle in '", "'degree'", "'rad'", "'volume in '",
+	"'l'", "'gal'", "'ml'", "'floz'", "'area in '", "'m2'", "'ha'", "'ac'",
+	"'mm'", "'rain in '", "'density in '", "'kgm3'", "'latitude in '", "'longitude in '",
+	"'speed in '", "'cms'", "'kms'", "'mih'", "'volumeflow in '", "'m3s'",
+	"'scmm'", "'ls'", "'ft3s'", "'galm'", "'energy in '", "'J'", "'nm'", "'Wh'",
+	"'KWh'", "'cal'", "'Kcal'", "'thing'", "'sensor'", "'actuator'", "';'",
+	"", "", "", "'relativehumidity'", "'switch'", "'presence'", "'command'",
 }
 var symbolicNames = []string{
 	"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
 	"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
 	"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
 	"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
-	"", "", "", "", "", "", "", "", "", "", "THING", "SENSOR", "ACTUATOR",
-	"END_CHAR", "WS", "COMMENT", "LINE_COMMENT", "BOOL", "INT", "FLOAT", "BYTES",
-	"RELATIVEHUMIDITY", "SWITCH", "PRESENCE", "COMMAND", "IDENTIFIER", "ID",
+	"", "", "", "", "", "", "", "", "", "", "", "", "", "THING", "SENSOR",
+	"ACTUATOR", "END_CHAR", "WS", "COMMENT", "LINE_COMMENT", "RELATIVEHUMIDITY",
+	"SWITCH", "PRESENCE", "COMMAND", "IDENTIFIER", "ID",
 }
 
 var ruleNames = []string{
-	"start", "definition", "thingContent", "valueOptions", "unitTypeOptions",
-	"voltage", "voltagesUnits", "current", "currentUnits", "resistance", "resistanceUnits",
-	"power", "powerUnits", "temperature", "temperatureUnits", "luminosity",
-	"luminosityUnits", "time", "timeUnits", "mass", "massUnits", "pressure",
-	"pressureUnits", "distance", "distanceUnits", "angle", "angleUnits", "volume",
-	"volumeUnits", "area", "areaUnits", "rain", "rainUnits", "density", "densityUnits",
-	"latitude", "latitudeUnits", "longitude", "longitudeUnits", "speed", "speedUnits",
+	"start", "definition", "thingContent", "valueOptions", "boolOpt", "numberOpt",
+	"bytesOpt", "unitTypeOptions", "logicUnits", "voltage", "voltagesUnits",
+	"current", "currentUnits", "resistance", "resistanceUnits", "power", "powerUnits",
+	"temperature", "temperatureUnits", "luminosity", "luminosityUnits", "time",
+	"timeUnits", "mass", "massUnits", "pressure", "pressureUnits", "distance",
+	"distanceUnits", "angle", "angleUnits", "volume", "volumeUnits", "area",
+	"areaUnits", "rain", "rainUnits", "density", "densityUnits", "latitude",
+	"latitudeUnits", "longitude", "longitudeUnits", "speed", "speedUnits",
 	"volumeflow", "volumeflowUnits", "energy", "energyUnits",
 }
 var decisionToDFA = make([]*antlr.DFA, len(deserializedATN.DecisionToState))
@@ -263,23 +273,22 @@ const (
 	KnotParserT__78            = 79
 	KnotParserT__79            = 80
 	KnotParserT__80            = 81
-	KnotParserTHING            = 82
-	KnotParserSENSOR           = 83
-	KnotParserACTUATOR         = 84
-	KnotParserEND_CHAR         = 85
-	KnotParserWS               = 86
-	KnotParserCOMMENT          = 87
-	KnotParserLINE_COMMENT     = 88
-	KnotParserBOOL             = 89
-	KnotParserINT              = 90
-	KnotParserFLOAT            = 91
-	KnotParserBYTES            = 92
-	KnotParserRELATIVEHUMIDITY = 93
-	KnotParserSWITCH           = 94
-	KnotParserPRESENCE         = 95
-	KnotParserCOMMAND          = 96
-	KnotParserIDENTIFIER       = 97
-	KnotParserID               = 98
+	KnotParserT__81            = 82
+	KnotParserT__82            = 83
+	KnotParserT__83            = 84
+	KnotParserTHING            = 85
+	KnotParserSENSOR           = 86
+	KnotParserACTUATOR         = 87
+	KnotParserEND_CHAR         = 88
+	KnotParserWS               = 89
+	KnotParserCOMMENT          = 90
+	KnotParserLINE_COMMENT     = 91
+	KnotParserRELATIVEHUMIDITY = 92
+	KnotParserSWITCH           = 93
+	KnotParserPRESENCE         = 94
+	KnotParserCOMMAND          = 95
+	KnotParserIDENTIFIER       = 96
+	KnotParserID               = 97
 )
 
 // KnotParser rules.
@@ -288,47 +297,51 @@ const (
 	KnotParserRULE_definition       = 1
 	KnotParserRULE_thingContent     = 2
 	KnotParserRULE_valueOptions     = 3
-	KnotParserRULE_unitTypeOptions  = 4
-	KnotParserRULE_voltage          = 5
-	KnotParserRULE_voltagesUnits    = 6
-	KnotParserRULE_current          = 7
-	KnotParserRULE_currentUnits     = 8
-	KnotParserRULE_resistance       = 9
-	KnotParserRULE_resistanceUnits  = 10
-	KnotParserRULE_power            = 11
-	KnotParserRULE_powerUnits       = 12
-	KnotParserRULE_temperature      = 13
-	KnotParserRULE_temperatureUnits = 14
-	KnotParserRULE_luminosity       = 15
-	KnotParserRULE_luminosityUnits  = 16
-	KnotParserRULE_time             = 17
-	KnotParserRULE_timeUnits        = 18
-	KnotParserRULE_mass             = 19
-	KnotParserRULE_massUnits        = 20
-	KnotParserRULE_pressure         = 21
-	KnotParserRULE_pressureUnits    = 22
-	KnotParserRULE_distance         = 23
-	KnotParserRULE_distanceUnits    = 24
-	KnotParserRULE_angle            = 25
-	KnotParserRULE_angleUnits       = 26
-	KnotParserRULE_volume           = 27
-	KnotParserRULE_volumeUnits      = 28
-	KnotParserRULE_area             = 29
-	KnotParserRULE_areaUnits        = 30
-	KnotParserRULE_rain             = 31
-	KnotParserRULE_rainUnits        = 32
-	KnotParserRULE_density          = 33
-	KnotParserRULE_densityUnits     = 34
-	KnotParserRULE_latitude         = 35
-	KnotParserRULE_latitudeUnits    = 36
-	KnotParserRULE_longitude        = 37
-	KnotParserRULE_longitudeUnits   = 38
-	KnotParserRULE_speed            = 39
-	KnotParserRULE_speedUnits       = 40
-	KnotParserRULE_volumeflow       = 41
-	KnotParserRULE_volumeflowUnits  = 42
-	KnotParserRULE_energy           = 43
-	KnotParserRULE_energyUnits      = 44
+	KnotParserRULE_boolOpt          = 4
+	KnotParserRULE_numberOpt        = 5
+	KnotParserRULE_bytesOpt         = 6
+	KnotParserRULE_unitTypeOptions  = 7
+	KnotParserRULE_logicUnits       = 8
+	KnotParserRULE_voltage          = 9
+	KnotParserRULE_voltagesUnits    = 10
+	KnotParserRULE_current          = 11
+	KnotParserRULE_currentUnits     = 12
+	KnotParserRULE_resistance       = 13
+	KnotParserRULE_resistanceUnits  = 14
+	KnotParserRULE_power            = 15
+	KnotParserRULE_powerUnits       = 16
+	KnotParserRULE_temperature      = 17
+	KnotParserRULE_temperatureUnits = 18
+	KnotParserRULE_luminosity       = 19
+	KnotParserRULE_luminosityUnits  = 20
+	KnotParserRULE_time             = 21
+	KnotParserRULE_timeUnits        = 22
+	KnotParserRULE_mass             = 23
+	KnotParserRULE_massUnits        = 24
+	KnotParserRULE_pressure         = 25
+	KnotParserRULE_pressureUnits    = 26
+	KnotParserRULE_distance         = 27
+	KnotParserRULE_distanceUnits    = 28
+	KnotParserRULE_angle            = 29
+	KnotParserRULE_angleUnits       = 30
+	KnotParserRULE_volume           = 31
+	KnotParserRULE_volumeUnits      = 32
+	KnotParserRULE_area             = 33
+	KnotParserRULE_areaUnits        = 34
+	KnotParserRULE_rain             = 35
+	KnotParserRULE_rainUnits        = 36
+	KnotParserRULE_density          = 37
+	KnotParserRULE_densityUnits     = 38
+	KnotParserRULE_latitude         = 39
+	KnotParserRULE_latitudeUnits    = 40
+	KnotParserRULE_longitude        = 41
+	KnotParserRULE_longitudeUnits   = 42
+	KnotParserRULE_speed            = 43
+	KnotParserRULE_speedUnits       = 44
+	KnotParserRULE_volumeflow       = 45
+	KnotParserRULE_volumeflowUnits  = 46
+	KnotParserRULE_energy           = 47
+	KnotParserRULE_energyUnits      = 48
 )
 
 // IStartContext is an interface to support dynamic dispatch.
@@ -448,22 +461,22 @@ func (p *KnotParser) Start() (localctx IStartContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(91)
+	p.SetState(99)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for ok := true; ok; ok = _la == KnotParserTHING {
 		{
-			p.SetState(90)
+			p.SetState(98)
 			p.Definition()
 		}
 
-		p.SetState(93)
+		p.SetState(101)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(95)
+		p.SetState(103)
 		p.Match(KnotParserEOF)
 	}
 
@@ -592,33 +605,33 @@ func (p *KnotParser) Definition() (localctx IDefinitionContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(97)
+		p.SetState(105)
 		p.Match(KnotParserTHING)
 	}
 	{
-		p.SetState(98)
+		p.SetState(106)
 		p.Match(KnotParserIDENTIFIER)
 	}
 	{
-		p.SetState(99)
+		p.SetState(107)
 		p.Match(KnotParserT__0)
 	}
-	p.SetState(101)
+	p.SetState(109)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for ok := true; ok; ok = _la == KnotParserSENSOR || _la == KnotParserACTUATOR {
 		{
-			p.SetState(100)
+			p.SetState(108)
 			p.ThingContent()
 		}
 
-		p.SetState(103)
+		p.SetState(111)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(105)
+		p.SetState(113)
 		p.Match(KnotParserT__1)
 	}
 
@@ -684,24 +697,6 @@ func (s *ThingContentContext) ValueOptions() IValueOptionsContext {
 	return t.(IValueOptionsContext)
 }
 
-func (s *ThingContentContext) IDENTIFIER() antlr.TerminalNode {
-	return s.GetToken(KnotParserIDENTIFIER, 0)
-}
-
-func (s *ThingContentContext) UnitTypeOptions() IUnitTypeOptionsContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IUnitTypeOptionsContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IUnitTypeOptionsContext)
-}
-
-func (s *ThingContentContext) END_CHAR() antlr.TerminalNode {
-	return s.GetToken(KnotParserEND_CHAR, 0)
-}
-
 func (s *ThingContentContext) SENSOR() antlr.TerminalNode {
 	return s.GetToken(KnotParserSENSOR, 0)
 }
@@ -763,7 +758,7 @@ func (p *KnotParser) ThingContent() (localctx IThingContentContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(107)
+		p.SetState(115)
 
 		var _lt = p.GetTokenStream().LT(1)
 
@@ -781,28 +776,8 @@ func (p *KnotParser) ThingContent() (localctx IThingContentContext) {
 		}
 	}
 	{
-		p.SetState(108)
+		p.SetState(116)
 		p.ValueOptions()
-	}
-	{
-		p.SetState(109)
-		p.Match(KnotParserIDENTIFIER)
-	}
-	{
-		p.SetState(110)
-		p.Match(KnotParserT__2)
-	}
-	{
-		p.SetState(111)
-		p.UnitTypeOptions()
-	}
-	{
-		p.SetState(112)
-		p.Match(KnotParserT__3)
-	}
-	{
-		p.SetState(113)
-		p.Match(KnotParserEND_CHAR)
 	}
 
 	return localctx
@@ -815,12 +790,6 @@ type IValueOptionsContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
-	// GetOp returns the op token.
-	GetOp() antlr.Token
-
-	// SetOp sets the op token.
-	SetOp(antlr.Token)
-
 	// IsValueOptionsContext differentiates from other interfaces.
 	IsValueOptionsContext()
 }
@@ -828,7 +797,6 @@ type IValueOptionsContext interface {
 type ValueOptionsContext struct {
 	*antlr.BaseParserRuleContext
 	parser antlr.Parser
-	op     antlr.Token
 }
 
 func NewEmptyValueOptionsContext() *ValueOptionsContext {
@@ -853,24 +821,34 @@ func NewValueOptionsContext(parser antlr.Parser, parent antlr.ParserRuleContext,
 
 func (s *ValueOptionsContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *ValueOptionsContext) GetOp() antlr.Token { return s.op }
+func (s *ValueOptionsContext) BoolOpt() IBoolOptContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBoolOptContext)(nil)).Elem(), 0)
 
-func (s *ValueOptionsContext) SetOp(v antlr.Token) { s.op = v }
+	if t == nil {
+		return nil
+	}
 
-func (s *ValueOptionsContext) BOOL() antlr.TerminalNode {
-	return s.GetToken(KnotParserBOOL, 0)
+	return t.(IBoolOptContext)
 }
 
-func (s *ValueOptionsContext) INT() antlr.TerminalNode {
-	return s.GetToken(KnotParserINT, 0)
+func (s *ValueOptionsContext) NumberOpt() INumberOptContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*INumberOptContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(INumberOptContext)
 }
 
-func (s *ValueOptionsContext) FLOAT() antlr.TerminalNode {
-	return s.GetToken(KnotParserFLOAT, 0)
-}
+func (s *ValueOptionsContext) BytesOpt() IBytesOptContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBytesOptContext)(nil)).Elem(), 0)
 
-func (s *ValueOptionsContext) BYTES() antlr.TerminalNode {
-	return s.GetToken(KnotParserBYTES, 0)
+	if t == nil {
+		return nil
+	}
+
+	return t.(IBytesOptContext)
 }
 
 func (s *ValueOptionsContext) GetRuleContext() antlr.RuleContext {
@@ -906,6 +884,153 @@ func (s *ValueOptionsContext) Accept(visitor antlr.ParseTreeVisitor) interface{}
 func (p *KnotParser) ValueOptions() (localctx IValueOptionsContext) {
 	localctx = NewValueOptionsContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 6, KnotParserRULE_valueOptions)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.SetState(121)
+	p.GetErrorHandler().Sync(p)
+
+	switch p.GetTokenStream().LA(1) {
+	case KnotParserT__2:
+		p.EnterOuterAlt(localctx, 1)
+		{
+			p.SetState(118)
+			p.BoolOpt()
+		}
+
+	case KnotParserT__5, KnotParserT__6:
+		p.EnterOuterAlt(localctx, 2)
+		{
+			p.SetState(119)
+			p.NumberOpt()
+		}
+
+	case KnotParserT__7:
+		p.EnterOuterAlt(localctx, 3)
+		{
+			p.SetState(120)
+			p.BytesOpt()
+		}
+
+	default:
+		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+	}
+
+	return localctx
+}
+
+// IBoolOptContext is an interface to support dynamic dispatch.
+type IBoolOptContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// GetOp returns the op token.
+	GetOp() antlr.Token
+
+	// SetOp sets the op token.
+	SetOp(antlr.Token)
+
+	// IsBoolOptContext differentiates from other interfaces.
+	IsBoolOptContext()
+}
+
+type BoolOptContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+	op     antlr.Token
+}
+
+func NewEmptyBoolOptContext() *BoolOptContext {
+	var p = new(BoolOptContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = KnotParserRULE_boolOpt
+	return p
+}
+
+func (*BoolOptContext) IsBoolOptContext() {}
+
+func NewBoolOptContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *BoolOptContext {
+	var p = new(BoolOptContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = KnotParserRULE_boolOpt
+
+	return p
+}
+
+func (s *BoolOptContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *BoolOptContext) GetOp() antlr.Token { return s.op }
+
+func (s *BoolOptContext) SetOp(v antlr.Token) { s.op = v }
+
+func (s *BoolOptContext) IDENTIFIER() antlr.TerminalNode {
+	return s.GetToken(KnotParserIDENTIFIER, 0)
+}
+
+func (s *BoolOptContext) END_CHAR() antlr.TerminalNode {
+	return s.GetToken(KnotParserEND_CHAR, 0)
+}
+
+func (s *BoolOptContext) SWITCH() antlr.TerminalNode {
+	return s.GetToken(KnotParserSWITCH, 0)
+}
+
+func (s *BoolOptContext) PRESENCE() antlr.TerminalNode {
+	return s.GetToken(KnotParserPRESENCE, 0)
+}
+
+func (s *BoolOptContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *BoolOptContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *BoolOptContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(KnotListener); ok {
+		listenerT.EnterBoolOpt(s)
+	}
+}
+
+func (s *BoolOptContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(KnotListener); ok {
+		listenerT.ExitBoolOpt(s)
+	}
+}
+
+func (s *BoolOptContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case KnotVisitor:
+		return t.VisitBoolOpt(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *KnotParser) BoolOpt() (localctx IBoolOptContext) {
+	localctx = NewBoolOptContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 8, KnotParserRULE_boolOpt)
 	var _la int
 
 	defer func() {
@@ -926,22 +1051,332 @@ func (p *KnotParser) ValueOptions() (localctx IValueOptionsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(115)
+		p.SetState(123)
+		p.Match(KnotParserT__2)
+	}
+	{
+		p.SetState(124)
+		p.Match(KnotParserIDENTIFIER)
+	}
+	{
+		p.SetState(125)
+		p.Match(KnotParserT__3)
+	}
+	{
+		p.SetState(126)
 
 		var _lt = p.GetTokenStream().LT(1)
 
-		localctx.(*ValueOptionsContext).op = _lt
+		localctx.(*BoolOptContext).op = _lt
 
 		_la = p.GetTokenStream().LA(1)
 
-		if !(((_la-89)&-(0x1f+1)) == 0 && ((1<<uint((_la-89)))&((1<<(KnotParserBOOL-89))|(1<<(KnotParserINT-89))|(1<<(KnotParserFLOAT-89))|(1<<(KnotParserBYTES-89)))) != 0) {
+		if !(_la == KnotParserSWITCH || _la == KnotParserPRESENCE) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
-			localctx.(*ValueOptionsContext).op = _ri
+			localctx.(*BoolOptContext).op = _ri
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
 			p.Consume()
 		}
+	}
+	{
+		p.SetState(127)
+		p.Match(KnotParserT__4)
+	}
+	{
+		p.SetState(128)
+		p.Match(KnotParserEND_CHAR)
+	}
+
+	return localctx
+}
+
+// INumberOptContext is an interface to support dynamic dispatch.
+type INumberOptContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// GetOp returns the op token.
+	GetOp() antlr.Token
+
+	// SetOp sets the op token.
+	SetOp(antlr.Token)
+
+	// IsNumberOptContext differentiates from other interfaces.
+	IsNumberOptContext()
+}
+
+type NumberOptContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+	op     antlr.Token
+}
+
+func NewEmptyNumberOptContext() *NumberOptContext {
+	var p = new(NumberOptContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = KnotParserRULE_numberOpt
+	return p
+}
+
+func (*NumberOptContext) IsNumberOptContext() {}
+
+func NewNumberOptContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *NumberOptContext {
+	var p = new(NumberOptContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = KnotParserRULE_numberOpt
+
+	return p
+}
+
+func (s *NumberOptContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *NumberOptContext) GetOp() antlr.Token { return s.op }
+
+func (s *NumberOptContext) SetOp(v antlr.Token) { s.op = v }
+
+func (s *NumberOptContext) IDENTIFIER() antlr.TerminalNode {
+	return s.GetToken(KnotParserIDENTIFIER, 0)
+}
+
+func (s *NumberOptContext) UnitTypeOptions() IUnitTypeOptionsContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IUnitTypeOptionsContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IUnitTypeOptionsContext)
+}
+
+func (s *NumberOptContext) END_CHAR() antlr.TerminalNode {
+	return s.GetToken(KnotParserEND_CHAR, 0)
+}
+
+func (s *NumberOptContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *NumberOptContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *NumberOptContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(KnotListener); ok {
+		listenerT.EnterNumberOpt(s)
+	}
+}
+
+func (s *NumberOptContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(KnotListener); ok {
+		listenerT.ExitNumberOpt(s)
+	}
+}
+
+func (s *NumberOptContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case KnotVisitor:
+		return t.VisitNumberOpt(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *KnotParser) NumberOpt() (localctx INumberOptContext) {
+	localctx = NewNumberOptContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 10, KnotParserRULE_numberOpt)
+	var _la int
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(130)
+
+		var _lt = p.GetTokenStream().LT(1)
+
+		localctx.(*NumberOptContext).op = _lt
+
+		_la = p.GetTokenStream().LA(1)
+
+		if !(_la == KnotParserT__5 || _la == KnotParserT__6) {
+			var _ri = p.GetErrorHandler().RecoverInline(p)
+
+			localctx.(*NumberOptContext).op = _ri
+		} else {
+			p.GetErrorHandler().ReportMatch(p)
+			p.Consume()
+		}
+	}
+	{
+		p.SetState(131)
+		p.Match(KnotParserIDENTIFIER)
+	}
+	{
+		p.SetState(132)
+		p.Match(KnotParserT__3)
+	}
+	{
+		p.SetState(133)
+		p.UnitTypeOptions()
+	}
+	{
+		p.SetState(134)
+		p.Match(KnotParserT__4)
+	}
+	{
+		p.SetState(135)
+		p.Match(KnotParserEND_CHAR)
+	}
+
+	return localctx
+}
+
+// IBytesOptContext is an interface to support dynamic dispatch.
+type IBytesOptContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsBytesOptContext differentiates from other interfaces.
+	IsBytesOptContext()
+}
+
+type BytesOptContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyBytesOptContext() *BytesOptContext {
+	var p = new(BytesOptContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = KnotParserRULE_bytesOpt
+	return p
+}
+
+func (*BytesOptContext) IsBytesOptContext() {}
+
+func NewBytesOptContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *BytesOptContext {
+	var p = new(BytesOptContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = KnotParserRULE_bytesOpt
+
+	return p
+}
+
+func (s *BytesOptContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *BytesOptContext) IDENTIFIER() antlr.TerminalNode {
+	return s.GetToken(KnotParserIDENTIFIER, 0)
+}
+
+func (s *BytesOptContext) COMMAND() antlr.TerminalNode {
+	return s.GetToken(KnotParserCOMMAND, 0)
+}
+
+func (s *BytesOptContext) END_CHAR() antlr.TerminalNode {
+	return s.GetToken(KnotParserEND_CHAR, 0)
+}
+
+func (s *BytesOptContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *BytesOptContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *BytesOptContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(KnotListener); ok {
+		listenerT.EnterBytesOpt(s)
+	}
+}
+
+func (s *BytesOptContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(KnotListener); ok {
+		listenerT.ExitBytesOpt(s)
+	}
+}
+
+func (s *BytesOptContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case KnotVisitor:
+		return t.VisitBytesOpt(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *KnotParser) BytesOpt() (localctx IBytesOptContext) {
+	localctx = NewBytesOptContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 12, KnotParserRULE_bytesOpt)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(137)
+		p.Match(KnotParserT__7)
+	}
+	{
+		p.SetState(138)
+		p.Match(KnotParserIDENTIFIER)
+	}
+	{
+		p.SetState(139)
+		p.Match(KnotParserT__3)
+	}
+	{
+		p.SetState(140)
+		p.Match(KnotParserCOMMAND)
+	}
+	{
+		p.SetState(141)
+		p.Match(KnotParserT__4)
+	}
+	{
+		p.SetState(142)
+		p.Match(KnotParserEND_CHAR)
 	}
 
 	return localctx
@@ -1189,18 +1624,6 @@ func (s *UnitTypeOptionsContext) RELATIVEHUMIDITY() antlr.TerminalNode {
 	return s.GetToken(KnotParserRELATIVEHUMIDITY, 0)
 }
 
-func (s *UnitTypeOptionsContext) SWITCH() antlr.TerminalNode {
-	return s.GetToken(KnotParserSWITCH, 0)
-}
-
-func (s *UnitTypeOptionsContext) PRESENCE() antlr.TerminalNode {
-	return s.GetToken(KnotParserPRESENCE, 0)
-}
-
-func (s *UnitTypeOptionsContext) COMMAND() antlr.TerminalNode {
-	return s.GetToken(KnotParserCOMMAND, 0)
-}
-
 func (s *UnitTypeOptionsContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -1233,7 +1656,7 @@ func (s *UnitTypeOptionsContext) Accept(visitor antlr.ParseTreeVisitor) interfac
 
 func (p *KnotParser) UnitTypeOptions() (localctx IUnitTypeOptionsContext) {
 	localctx = NewUnitTypeOptionsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 8, KnotParserRULE_unitTypeOptions)
+	p.EnterRule(localctx, 14, KnotParserRULE_unitTypeOptions)
 
 	defer func() {
 		p.ExitRule()
@@ -1252,156 +1675,255 @@ func (p *KnotParser) UnitTypeOptions() (localctx IUnitTypeOptionsContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(141)
+	p.SetState(165)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
-	case KnotParserT__4:
+	case KnotParserT__8:
 		{
-			p.SetState(117)
+			p.SetState(144)
 			p.Voltage()
 		}
 
-	case KnotParserT__8:
+	case KnotParserT__12:
 		{
-			p.SetState(118)
+			p.SetState(145)
 			p.Current()
 		}
 
-	case KnotParserT__11:
+	case KnotParserT__15:
 		{
-			p.SetState(119)
+			p.SetState(146)
 			p.Resistance()
-		}
-
-	case KnotParserT__13:
-		{
-			p.SetState(120)
-			p.Power()
 		}
 
 	case KnotParserT__17:
 		{
-			p.SetState(121)
-			p.Temperature()
+			p.SetState(147)
+			p.Power()
 		}
 
 	case KnotParserT__21:
 		{
-			p.SetState(122)
-			p.Luminosity()
+			p.SetState(148)
+			p.Temperature()
 		}
 
 	case KnotParserT__25:
 		{
-			p.SetState(123)
+			p.SetState(149)
+			p.Luminosity()
+		}
+
+	case KnotParserT__29:
+		{
+			p.SetState(150)
 			p.Time()
 		}
 
-	case KnotParserT__31:
+	case KnotParserT__35:
 		{
-			p.SetState(124)
+			p.SetState(151)
 			p.Mass()
-		}
-
-	case KnotParserT__36:
-		{
-			p.SetState(125)
-			p.Pressure()
 		}
 
 	case KnotParserT__40:
 		{
-			p.SetState(126)
+			p.SetState(152)
+			p.Pressure()
+		}
+
+	case KnotParserT__44:
+		{
+			p.SetState(153)
 			p.Distance()
 		}
 
-	case KnotParserT__45:
+	case KnotParserT__49:
 		{
-			p.SetState(127)
+			p.SetState(154)
 			p.Angle()
 		}
 
-	case KnotParserT__48:
+	case KnotParserT__52:
 		{
-			p.SetState(128)
+			p.SetState(155)
 			p.Volume()
 		}
 
-	case KnotParserT__53:
+	case KnotParserT__57:
 		{
-			p.SetState(129)
+			p.SetState(156)
 			p.Area()
 		}
 
-	case KnotParserT__58:
+	case KnotParserT__62:
 		{
-			p.SetState(130)
+			p.SetState(157)
 			p.Rain()
-		}
-
-	case KnotParserT__59:
-		{
-			p.SetState(131)
-			p.Density()
-		}
-
-	case KnotParserT__61:
-		{
-			p.SetState(132)
-			p.Latitude()
 		}
 
 	case KnotParserT__63:
 		{
-			p.SetState(133)
+			p.SetState(158)
+			p.Density()
+		}
+
+	case KnotParserT__65:
+		{
+			p.SetState(159)
+			p.Latitude()
+		}
+
+	case KnotParserT__66:
+		{
+			p.SetState(160)
 			p.Longitude()
 		}
 
-	case KnotParserT__64:
+	case KnotParserT__67:
 		{
-			p.SetState(134)
+			p.SetState(161)
 			p.Speed()
 		}
 
-	case KnotParserT__68:
+	case KnotParserT__71:
 		{
-			p.SetState(135)
+			p.SetState(162)
 			p.Volumeflow()
 		}
 
-	case KnotParserT__74:
+	case KnotParserT__77:
 		{
-			p.SetState(136)
+			p.SetState(163)
 			p.Energy()
 		}
 
 	case KnotParserRELATIVEHUMIDITY:
 		{
-			p.SetState(137)
+			p.SetState(164)
 			p.Match(KnotParserRELATIVEHUMIDITY)
-		}
-
-	case KnotParserSWITCH:
-		{
-			p.SetState(138)
-			p.Match(KnotParserSWITCH)
-		}
-
-	case KnotParserPRESENCE:
-		{
-			p.SetState(139)
-			p.Match(KnotParserPRESENCE)
-		}
-
-	case KnotParserCOMMAND:
-		{
-			p.SetState(140)
-			p.Match(KnotParserCOMMAND)
 		}
 
 	default:
 		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+	}
+
+	return localctx
+}
+
+// ILogicUnitsContext is an interface to support dynamic dispatch.
+type ILogicUnitsContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsLogicUnitsContext differentiates from other interfaces.
+	IsLogicUnitsContext()
+}
+
+type LogicUnitsContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyLogicUnitsContext() *LogicUnitsContext {
+	var p = new(LogicUnitsContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = KnotParserRULE_logicUnits
+	return p
+}
+
+func (*LogicUnitsContext) IsLogicUnitsContext() {}
+
+func NewLogicUnitsContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *LogicUnitsContext {
+	var p = new(LogicUnitsContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = KnotParserRULE_logicUnits
+
+	return p
+}
+
+func (s *LogicUnitsContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *LogicUnitsContext) SWITCH() antlr.TerminalNode {
+	return s.GetToken(KnotParserSWITCH, 0)
+}
+
+func (s *LogicUnitsContext) PRESENCE() antlr.TerminalNode {
+	return s.GetToken(KnotParserPRESENCE, 0)
+}
+
+func (s *LogicUnitsContext) COMMAND() antlr.TerminalNode {
+	return s.GetToken(KnotParserCOMMAND, 0)
+}
+
+func (s *LogicUnitsContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *LogicUnitsContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *LogicUnitsContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(KnotListener); ok {
+		listenerT.EnterLogicUnits(s)
+	}
+}
+
+func (s *LogicUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(KnotListener); ok {
+		listenerT.ExitLogicUnits(s)
+	}
+}
+
+func (s *LogicUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case KnotVisitor:
+		return t.VisitLogicUnits(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *KnotParser) LogicUnits() (localctx ILogicUnitsContext) {
+	localctx = NewLogicUnitsContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 16, KnotParserRULE_logicUnits)
+	var _la int
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(167)
+		_la = p.GetTokenStream().LA(1)
+
+		if !(((_la-93)&-(0x1f+1)) == 0 && ((1<<uint((_la-93)))&((1<<(KnotParserSWITCH-93))|(1<<(KnotParserPRESENCE-93))|(1<<(KnotParserCOMMAND-93)))) != 0) {
+			p.GetErrorHandler().RecoverInline(p)
+		} else {
+			p.GetErrorHandler().ReportMatch(p)
+			p.Consume()
+		}
 	}
 
 	return localctx
@@ -1487,7 +2009,7 @@ func (s *VoltageContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Voltage() (localctx IVoltageContext) {
 	localctx = NewVoltageContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 10, KnotParserRULE_voltage)
+	p.EnterRule(localctx, 18, KnotParserRULE_voltage)
 
 	defer func() {
 		p.ExitRule()
@@ -1507,11 +2029,11 @@ func (p *KnotParser) Voltage() (localctx IVoltageContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(143)
-		p.Match(KnotParserT__4)
+		p.SetState(169)
+		p.Match(KnotParserT__8)
 	}
 	{
-		p.SetState(144)
+		p.SetState(170)
 		p.VoltagesUnits()
 	}
 
@@ -1599,7 +2121,7 @@ func (s *VoltagesUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{
 
 func (p *KnotParser) VoltagesUnits() (localctx IVoltagesUnitsContext) {
 	localctx = NewVoltagesUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 12, KnotParserRULE_voltagesUnits)
+	p.EnterRule(localctx, 20, KnotParserRULE_voltagesUnits)
 	var _la int
 
 	defer func() {
@@ -1620,7 +2142,7 @@ func (p *KnotParser) VoltagesUnits() (localctx IVoltagesUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(146)
+		p.SetState(172)
 
 		var _lt = p.GetTokenStream().LT(1)
 
@@ -1628,7 +2150,7 @@ func (p *KnotParser) VoltagesUnits() (localctx IVoltagesUnitsContext) {
 
 		_la = p.GetTokenStream().LA(1)
 
-		if !(((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<KnotParserT__5)|(1<<KnotParserT__6)|(1<<KnotParserT__7))) != 0) {
+		if !(((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<KnotParserT__9)|(1<<KnotParserT__10)|(1<<KnotParserT__11))) != 0) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
 			localctx.(*VoltagesUnitsContext).op = _ri
@@ -1721,7 +2243,7 @@ func (s *CurrentContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Current() (localctx ICurrentContext) {
 	localctx = NewCurrentContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 14, KnotParserRULE_current)
+	p.EnterRule(localctx, 22, KnotParserRULE_current)
 
 	defer func() {
 		p.ExitRule()
@@ -1741,11 +2263,11 @@ func (p *KnotParser) Current() (localctx ICurrentContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(148)
-		p.Match(KnotParserT__8)
+		p.SetState(174)
+		p.Match(KnotParserT__12)
 	}
 	{
-		p.SetState(149)
+		p.SetState(175)
 		p.CurrentUnits()
 	}
 
@@ -1833,7 +2355,7 @@ func (s *CurrentUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{}
 
 func (p *KnotParser) CurrentUnits() (localctx ICurrentUnitsContext) {
 	localctx = NewCurrentUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 16, KnotParserRULE_currentUnits)
+	p.EnterRule(localctx, 24, KnotParserRULE_currentUnits)
 	var _la int
 
 	defer func() {
@@ -1854,7 +2376,7 @@ func (p *KnotParser) CurrentUnits() (localctx ICurrentUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(151)
+		p.SetState(177)
 
 		var _lt = p.GetTokenStream().LT(1)
 
@@ -1862,7 +2384,7 @@ func (p *KnotParser) CurrentUnits() (localctx ICurrentUnitsContext) {
 
 		_la = p.GetTokenStream().LA(1)
 
-		if !(_la == KnotParserT__9 || _la == KnotParserT__10) {
+		if !(_la == KnotParserT__13 || _la == KnotParserT__14) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
 			localctx.(*CurrentUnitsContext).op = _ri
@@ -1955,7 +2477,7 @@ func (s *ResistanceContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Resistance() (localctx IResistanceContext) {
 	localctx = NewResistanceContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 18, KnotParserRULE_resistance)
+	p.EnterRule(localctx, 26, KnotParserRULE_resistance)
 
 	defer func() {
 		p.ExitRule()
@@ -1975,11 +2497,11 @@ func (p *KnotParser) Resistance() (localctx IResistanceContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(153)
-		p.Match(KnotParserT__11)
+		p.SetState(179)
+		p.Match(KnotParserT__15)
 	}
 	{
-		p.SetState(154)
+		p.SetState(180)
 		p.ResistanceUnits()
 	}
 
@@ -2067,7 +2589,7 @@ func (s *ResistanceUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interfac
 
 func (p *KnotParser) ResistanceUnits() (localctx IResistanceUnitsContext) {
 	localctx = NewResistanceUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 20, KnotParserRULE_resistanceUnits)
+	p.EnterRule(localctx, 28, KnotParserRULE_resistanceUnits)
 
 	defer func() {
 		p.ExitRule()
@@ -2087,9 +2609,9 @@ func (p *KnotParser) ResistanceUnits() (localctx IResistanceUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(156)
+		p.SetState(182)
 
-		var _m = p.Match(KnotParserT__12)
+		var _m = p.Match(KnotParserT__16)
 
 		localctx.(*ResistanceUnitsContext).op = _m
 	}
@@ -2177,7 +2699,7 @@ func (s *PowerContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Power() (localctx IPowerContext) {
 	localctx = NewPowerContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 22, KnotParserRULE_power)
+	p.EnterRule(localctx, 30, KnotParserRULE_power)
 
 	defer func() {
 		p.ExitRule()
@@ -2197,11 +2719,11 @@ func (p *KnotParser) Power() (localctx IPowerContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(158)
-		p.Match(KnotParserT__13)
+		p.SetState(184)
+		p.Match(KnotParserT__17)
 	}
 	{
-		p.SetState(159)
+		p.SetState(185)
 		p.PowerUnits()
 	}
 
@@ -2289,7 +2811,7 @@ func (s *PowerUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) PowerUnits() (localctx IPowerUnitsContext) {
 	localctx = NewPowerUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 24, KnotParserRULE_powerUnits)
+	p.EnterRule(localctx, 32, KnotParserRULE_powerUnits)
 	var _la int
 
 	defer func() {
@@ -2310,7 +2832,7 @@ func (p *KnotParser) PowerUnits() (localctx IPowerUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(161)
+		p.SetState(187)
 
 		var _lt = p.GetTokenStream().LT(1)
 
@@ -2318,7 +2840,7 @@ func (p *KnotParser) PowerUnits() (localctx IPowerUnitsContext) {
 
 		_la = p.GetTokenStream().LA(1)
 
-		if !(((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<KnotParserT__14)|(1<<KnotParserT__15)|(1<<KnotParserT__16))) != 0) {
+		if !(((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<KnotParserT__18)|(1<<KnotParserT__19)|(1<<KnotParserT__20))) != 0) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
 			localctx.(*PowerUnitsContext).op = _ri
@@ -2411,7 +2933,7 @@ func (s *TemperatureContext) Accept(visitor antlr.ParseTreeVisitor) interface{} 
 
 func (p *KnotParser) Temperature() (localctx ITemperatureContext) {
 	localctx = NewTemperatureContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 26, KnotParserRULE_temperature)
+	p.EnterRule(localctx, 34, KnotParserRULE_temperature)
 
 	defer func() {
 		p.ExitRule()
@@ -2431,11 +2953,11 @@ func (p *KnotParser) Temperature() (localctx ITemperatureContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(163)
-		p.Match(KnotParserT__17)
+		p.SetState(189)
+		p.Match(KnotParserT__21)
 	}
 	{
-		p.SetState(164)
+		p.SetState(190)
 		p.TemperatureUnits()
 	}
 
@@ -2523,7 +3045,7 @@ func (s *TemperatureUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interfa
 
 func (p *KnotParser) TemperatureUnits() (localctx ITemperatureUnitsContext) {
 	localctx = NewTemperatureUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 28, KnotParserRULE_temperatureUnits)
+	p.EnterRule(localctx, 36, KnotParserRULE_temperatureUnits)
 	var _la int
 
 	defer func() {
@@ -2544,7 +3066,7 @@ func (p *KnotParser) TemperatureUnits() (localctx ITemperatureUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(166)
+		p.SetState(192)
 
 		var _lt = p.GetTokenStream().LT(1)
 
@@ -2552,7 +3074,7 @@ func (p *KnotParser) TemperatureUnits() (localctx ITemperatureUnitsContext) {
 
 		_la = p.GetTokenStream().LA(1)
 
-		if !(((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<KnotParserT__18)|(1<<KnotParserT__19)|(1<<KnotParserT__20))) != 0) {
+		if !(((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<KnotParserT__22)|(1<<KnotParserT__23)|(1<<KnotParserT__24))) != 0) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
 			localctx.(*TemperatureUnitsContext).op = _ri
@@ -2645,7 +3167,7 @@ func (s *LuminosityContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Luminosity() (localctx ILuminosityContext) {
 	localctx = NewLuminosityContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 30, KnotParserRULE_luminosity)
+	p.EnterRule(localctx, 38, KnotParserRULE_luminosity)
 
 	defer func() {
 		p.ExitRule()
@@ -2665,11 +3187,11 @@ func (p *KnotParser) Luminosity() (localctx ILuminosityContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(168)
-		p.Match(KnotParserT__21)
+		p.SetState(194)
+		p.Match(KnotParserT__25)
 	}
 	{
-		p.SetState(169)
+		p.SetState(195)
 		p.LuminosityUnits()
 	}
 
@@ -2757,7 +3279,7 @@ func (s *LuminosityUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interfac
 
 func (p *KnotParser) LuminosityUnits() (localctx ILuminosityUnitsContext) {
 	localctx = NewLuminosityUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 32, KnotParserRULE_luminosityUnits)
+	p.EnterRule(localctx, 40, KnotParserRULE_luminosityUnits)
 	var _la int
 
 	defer func() {
@@ -2778,7 +3300,7 @@ func (p *KnotParser) LuminosityUnits() (localctx ILuminosityUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(171)
+		p.SetState(197)
 
 		var _lt = p.GetTokenStream().LT(1)
 
@@ -2786,7 +3308,7 @@ func (p *KnotParser) LuminosityUnits() (localctx ILuminosityUnitsContext) {
 
 		_la = p.GetTokenStream().LA(1)
 
-		if !(((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<KnotParserT__22)|(1<<KnotParserT__23)|(1<<KnotParserT__24))) != 0) {
+		if !(((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<KnotParserT__26)|(1<<KnotParserT__27)|(1<<KnotParserT__28))) != 0) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
 			localctx.(*LuminosityUnitsContext).op = _ri
@@ -2879,7 +3401,7 @@ func (s *TimeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Time() (localctx ITimeContext) {
 	localctx = NewTimeContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 34, KnotParserRULE_time)
+	p.EnterRule(localctx, 42, KnotParserRULE_time)
 
 	defer func() {
 		p.ExitRule()
@@ -2899,11 +3421,11 @@ func (p *KnotParser) Time() (localctx ITimeContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(173)
-		p.Match(KnotParserT__25)
+		p.SetState(199)
+		p.Match(KnotParserT__29)
 	}
 	{
-		p.SetState(174)
+		p.SetState(200)
 		p.TimeUnits()
 	}
 
@@ -2991,7 +3513,7 @@ func (s *TimeUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) TimeUnits() (localctx ITimeUnitsContext) {
 	localctx = NewTimeUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 36, KnotParserRULE_timeUnits)
+	p.EnterRule(localctx, 44, KnotParserRULE_timeUnits)
 	var _la int
 
 	defer func() {
@@ -3012,7 +3534,7 @@ func (p *KnotParser) TimeUnits() (localctx ITimeUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(176)
+		p.SetState(202)
 
 		var _lt = p.GetTokenStream().LT(1)
 
@@ -3020,7 +3542,7 @@ func (p *KnotParser) TimeUnits() (localctx ITimeUnitsContext) {
 
 		_la = p.GetTokenStream().LA(1)
 
-		if !(((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<KnotParserT__26)|(1<<KnotParserT__27)|(1<<KnotParserT__28)|(1<<KnotParserT__29)|(1<<KnotParserT__30))) != 0) {
+		if !(((_la-31)&-(0x1f+1)) == 0 && ((1<<uint((_la-31)))&((1<<(KnotParserT__30-31))|(1<<(KnotParserT__31-31))|(1<<(KnotParserT__32-31))|(1<<(KnotParserT__33-31))|(1<<(KnotParserT__34-31)))) != 0) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
 			localctx.(*TimeUnitsContext).op = _ri
@@ -3113,7 +3635,7 @@ func (s *MassContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Mass() (localctx IMassContext) {
 	localctx = NewMassContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 38, KnotParserRULE_mass)
+	p.EnterRule(localctx, 46, KnotParserRULE_mass)
 
 	defer func() {
 		p.ExitRule()
@@ -3133,11 +3655,11 @@ func (p *KnotParser) Mass() (localctx IMassContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(178)
-		p.Match(KnotParserT__31)
+		p.SetState(204)
+		p.Match(KnotParserT__35)
 	}
 	{
-		p.SetState(179)
+		p.SetState(205)
 		p.MassUnits()
 	}
 
@@ -3225,7 +3747,7 @@ func (s *MassUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) MassUnits() (localctx IMassUnitsContext) {
 	localctx = NewMassUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 40, KnotParserRULE_massUnits)
+	p.EnterRule(localctx, 48, KnotParserRULE_massUnits)
 	var _la int
 
 	defer func() {
@@ -3246,7 +3768,7 @@ func (p *KnotParser) MassUnits() (localctx IMassUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(181)
+		p.SetState(207)
 
 		var _lt = p.GetTokenStream().LT(1)
 
@@ -3254,7 +3776,7 @@ func (p *KnotParser) MassUnits() (localctx IMassUnitsContext) {
 
 		_la = p.GetTokenStream().LA(1)
 
-		if !(((_la-33)&-(0x1f+1)) == 0 && ((1<<uint((_la-33)))&((1<<(KnotParserT__32-33))|(1<<(KnotParserT__33-33))|(1<<(KnotParserT__34-33))|(1<<(KnotParserT__35-33)))) != 0) {
+		if !(((_la-37)&-(0x1f+1)) == 0 && ((1<<uint((_la-37)))&((1<<(KnotParserT__36-37))|(1<<(KnotParserT__37-37))|(1<<(KnotParserT__38-37))|(1<<(KnotParserT__39-37)))) != 0) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
 			localctx.(*MassUnitsContext).op = _ri
@@ -3347,7 +3869,7 @@ func (s *PressureContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Pressure() (localctx IPressureContext) {
 	localctx = NewPressureContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 42, KnotParserRULE_pressure)
+	p.EnterRule(localctx, 50, KnotParserRULE_pressure)
 
 	defer func() {
 		p.ExitRule()
@@ -3367,11 +3889,11 @@ func (p *KnotParser) Pressure() (localctx IPressureContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(183)
-		p.Match(KnotParserT__36)
+		p.SetState(209)
+		p.Match(KnotParserT__40)
 	}
 	{
-		p.SetState(184)
+		p.SetState(210)
 		p.PressureUnits()
 	}
 
@@ -3459,7 +3981,7 @@ func (s *PressureUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{
 
 func (p *KnotParser) PressureUnits() (localctx IPressureUnitsContext) {
 	localctx = NewPressureUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 44, KnotParserRULE_pressureUnits)
+	p.EnterRule(localctx, 52, KnotParserRULE_pressureUnits)
 	var _la int
 
 	defer func() {
@@ -3480,7 +4002,7 @@ func (p *KnotParser) PressureUnits() (localctx IPressureUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(186)
+		p.SetState(212)
 
 		var _lt = p.GetTokenStream().LT(1)
 
@@ -3488,7 +4010,7 @@ func (p *KnotParser) PressureUnits() (localctx IPressureUnitsContext) {
 
 		_la = p.GetTokenStream().LA(1)
 
-		if !(((_la-38)&-(0x1f+1)) == 0 && ((1<<uint((_la-38)))&((1<<(KnotParserT__37-38))|(1<<(KnotParserT__38-38))|(1<<(KnotParserT__39-38)))) != 0) {
+		if !(((_la-42)&-(0x1f+1)) == 0 && ((1<<uint((_la-42)))&((1<<(KnotParserT__41-42))|(1<<(KnotParserT__42-42))|(1<<(KnotParserT__43-42)))) != 0) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
 			localctx.(*PressureUnitsContext).op = _ri
@@ -3581,7 +4103,7 @@ func (s *DistanceContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Distance() (localctx IDistanceContext) {
 	localctx = NewDistanceContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 46, KnotParserRULE_distance)
+	p.EnterRule(localctx, 54, KnotParserRULE_distance)
 
 	defer func() {
 		p.ExitRule()
@@ -3601,11 +4123,11 @@ func (p *KnotParser) Distance() (localctx IDistanceContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(188)
-		p.Match(KnotParserT__40)
+		p.SetState(214)
+		p.Match(KnotParserT__44)
 	}
 	{
-		p.SetState(189)
+		p.SetState(215)
 		p.DistanceUnits()
 	}
 
@@ -3693,7 +4215,7 @@ func (s *DistanceUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{
 
 func (p *KnotParser) DistanceUnits() (localctx IDistanceUnitsContext) {
 	localctx = NewDistanceUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 48, KnotParserRULE_distanceUnits)
+	p.EnterRule(localctx, 56, KnotParserRULE_distanceUnits)
 	var _la int
 
 	defer func() {
@@ -3714,7 +4236,7 @@ func (p *KnotParser) DistanceUnits() (localctx IDistanceUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(191)
+		p.SetState(217)
 
 		var _lt = p.GetTokenStream().LT(1)
 
@@ -3722,7 +4244,7 @@ func (p *KnotParser) DistanceUnits() (localctx IDistanceUnitsContext) {
 
 		_la = p.GetTokenStream().LA(1)
 
-		if !(((_la-42)&-(0x1f+1)) == 0 && ((1<<uint((_la-42)))&((1<<(KnotParserT__41-42))|(1<<(KnotParserT__42-42))|(1<<(KnotParserT__43-42))|(1<<(KnotParserT__44-42)))) != 0) {
+		if !(((_la-46)&-(0x1f+1)) == 0 && ((1<<uint((_la-46)))&((1<<(KnotParserT__45-46))|(1<<(KnotParserT__46-46))|(1<<(KnotParserT__47-46))|(1<<(KnotParserT__48-46)))) != 0) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
 			localctx.(*DistanceUnitsContext).op = _ri
@@ -3815,7 +4337,7 @@ func (s *AngleContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Angle() (localctx IAngleContext) {
 	localctx = NewAngleContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 50, KnotParserRULE_angle)
+	p.EnterRule(localctx, 58, KnotParserRULE_angle)
 
 	defer func() {
 		p.ExitRule()
@@ -3835,11 +4357,11 @@ func (p *KnotParser) Angle() (localctx IAngleContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(193)
-		p.Match(KnotParserT__45)
+		p.SetState(219)
+		p.Match(KnotParserT__49)
 	}
 	{
-		p.SetState(194)
+		p.SetState(220)
 		p.AngleUnits()
 	}
 
@@ -3927,7 +4449,7 @@ func (s *AngleUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) AngleUnits() (localctx IAngleUnitsContext) {
 	localctx = NewAngleUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 52, KnotParserRULE_angleUnits)
+	p.EnterRule(localctx, 60, KnotParserRULE_angleUnits)
 	var _la int
 
 	defer func() {
@@ -3948,7 +4470,7 @@ func (p *KnotParser) AngleUnits() (localctx IAngleUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(196)
+		p.SetState(222)
 
 		var _lt = p.GetTokenStream().LT(1)
 
@@ -3956,7 +4478,7 @@ func (p *KnotParser) AngleUnits() (localctx IAngleUnitsContext) {
 
 		_la = p.GetTokenStream().LA(1)
 
-		if !(_la == KnotParserT__46 || _la == KnotParserT__47) {
+		if !(_la == KnotParserT__50 || _la == KnotParserT__51) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
 			localctx.(*AngleUnitsContext).op = _ri
@@ -4049,7 +4571,7 @@ func (s *VolumeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Volume() (localctx IVolumeContext) {
 	localctx = NewVolumeContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 54, KnotParserRULE_volume)
+	p.EnterRule(localctx, 62, KnotParserRULE_volume)
 
 	defer func() {
 		p.ExitRule()
@@ -4069,11 +4591,11 @@ func (p *KnotParser) Volume() (localctx IVolumeContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(198)
-		p.Match(KnotParserT__48)
+		p.SetState(224)
+		p.Match(KnotParserT__52)
 	}
 	{
-		p.SetState(199)
+		p.SetState(225)
 		p.VolumeUnits()
 	}
 
@@ -4161,7 +4683,7 @@ func (s *VolumeUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} 
 
 func (p *KnotParser) VolumeUnits() (localctx IVolumeUnitsContext) {
 	localctx = NewVolumeUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 56, KnotParserRULE_volumeUnits)
+	p.EnterRule(localctx, 64, KnotParserRULE_volumeUnits)
 	var _la int
 
 	defer func() {
@@ -4182,7 +4704,7 @@ func (p *KnotParser) VolumeUnits() (localctx IVolumeUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(201)
+		p.SetState(227)
 
 		var _lt = p.GetTokenStream().LT(1)
 
@@ -4190,7 +4712,7 @@ func (p *KnotParser) VolumeUnits() (localctx IVolumeUnitsContext) {
 
 		_la = p.GetTokenStream().LA(1)
 
-		if !(((_la-50)&-(0x1f+1)) == 0 && ((1<<uint((_la-50)))&((1<<(KnotParserT__49-50))|(1<<(KnotParserT__50-50))|(1<<(KnotParserT__51-50))|(1<<(KnotParserT__52-50)))) != 0) {
+		if !(((_la-54)&-(0x1f+1)) == 0 && ((1<<uint((_la-54)))&((1<<(KnotParserT__53-54))|(1<<(KnotParserT__54-54))|(1<<(KnotParserT__55-54))|(1<<(KnotParserT__56-54)))) != 0) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
 			localctx.(*VolumeUnitsContext).op = _ri
@@ -4283,7 +4805,7 @@ func (s *AreaContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Area() (localctx IAreaContext) {
 	localctx = NewAreaContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 58, KnotParserRULE_area)
+	p.EnterRule(localctx, 66, KnotParserRULE_area)
 
 	defer func() {
 		p.ExitRule()
@@ -4303,11 +4825,11 @@ func (p *KnotParser) Area() (localctx IAreaContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(203)
-		p.Match(KnotParserT__53)
+		p.SetState(229)
+		p.Match(KnotParserT__57)
 	}
 	{
-		p.SetState(204)
+		p.SetState(230)
 		p.AreaUnits()
 	}
 
@@ -4395,7 +4917,7 @@ func (s *AreaUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) AreaUnits() (localctx IAreaUnitsContext) {
 	localctx = NewAreaUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 60, KnotParserRULE_areaUnits)
+	p.EnterRule(localctx, 68, KnotParserRULE_areaUnits)
 	var _la int
 
 	defer func() {
@@ -4416,7 +4938,7 @@ func (p *KnotParser) AreaUnits() (localctx IAreaUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(206)
+		p.SetState(232)
 
 		var _lt = p.GetTokenStream().LT(1)
 
@@ -4424,7 +4946,7 @@ func (p *KnotParser) AreaUnits() (localctx IAreaUnitsContext) {
 
 		_la = p.GetTokenStream().LA(1)
 
-		if !(((_la-55)&-(0x1f+1)) == 0 && ((1<<uint((_la-55)))&((1<<(KnotParserT__54-55))|(1<<(KnotParserT__55-55))|(1<<(KnotParserT__56-55))|(1<<(KnotParserT__57-55)))) != 0) {
+		if !(((_la-59)&-(0x1f+1)) == 0 && ((1<<uint((_la-59)))&((1<<(KnotParserT__58-59))|(1<<(KnotParserT__59-59))|(1<<(KnotParserT__60-59))|(1<<(KnotParserT__61-59)))) != 0) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
 			localctx.(*AreaUnitsContext).op = _ri
@@ -4517,7 +5039,7 @@ func (s *RainContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Rain() (localctx IRainContext) {
 	localctx = NewRainContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 62, KnotParserRULE_rain)
+	p.EnterRule(localctx, 70, KnotParserRULE_rain)
 
 	defer func() {
 		p.ExitRule()
@@ -4537,11 +5059,11 @@ func (p *KnotParser) Rain() (localctx IRainContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(208)
-		p.Match(KnotParserT__58)
+		p.SetState(234)
+		p.Match(KnotParserT__62)
 	}
 	{
-		p.SetState(209)
+		p.SetState(235)
 		p.RainUnits()
 	}
 
@@ -4629,7 +5151,7 @@ func (s *RainUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) RainUnits() (localctx IRainUnitsContext) {
 	localctx = NewRainUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 64, KnotParserRULE_rainUnits)
+	p.EnterRule(localctx, 72, KnotParserRULE_rainUnits)
 
 	defer func() {
 		p.ExitRule()
@@ -4649,9 +5171,9 @@ func (p *KnotParser) RainUnits() (localctx IRainUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(211)
+		p.SetState(237)
 
-		var _m = p.Match(KnotParserT__57)
+		var _m = p.Match(KnotParserT__61)
 
 		localctx.(*RainUnitsContext).op = _m
 	}
@@ -4739,7 +5261,7 @@ func (s *DensityContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Density() (localctx IDensityContext) {
 	localctx = NewDensityContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 66, KnotParserRULE_density)
+	p.EnterRule(localctx, 74, KnotParserRULE_density)
 
 	defer func() {
 		p.ExitRule()
@@ -4759,11 +5281,11 @@ func (p *KnotParser) Density() (localctx IDensityContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(213)
-		p.Match(KnotParserT__59)
+		p.SetState(239)
+		p.Match(KnotParserT__63)
 	}
 	{
-		p.SetState(214)
+		p.SetState(240)
 		p.DensityUnits()
 	}
 
@@ -4851,7 +5373,7 @@ func (s *DensityUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{}
 
 func (p *KnotParser) DensityUnits() (localctx IDensityUnitsContext) {
 	localctx = NewDensityUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 68, KnotParserRULE_densityUnits)
+	p.EnterRule(localctx, 76, KnotParserRULE_densityUnits)
 
 	defer func() {
 		p.ExitRule()
@@ -4871,9 +5393,9 @@ func (p *KnotParser) DensityUnits() (localctx IDensityUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(216)
+		p.SetState(242)
 
-		var _m = p.Match(KnotParserT__60)
+		var _m = p.Match(KnotParserT__64)
 
 		localctx.(*DensityUnitsContext).op = _m
 	}
@@ -4961,7 +5483,7 @@ func (s *LatitudeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Latitude() (localctx ILatitudeContext) {
 	localctx = NewLatitudeContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 70, KnotParserRULE_latitude)
+	p.EnterRule(localctx, 78, KnotParserRULE_latitude)
 
 	defer func() {
 		p.ExitRule()
@@ -4981,11 +5503,11 @@ func (p *KnotParser) Latitude() (localctx ILatitudeContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(218)
-		p.Match(KnotParserT__61)
+		p.SetState(244)
+		p.Match(KnotParserT__65)
 	}
 	{
-		p.SetState(219)
+		p.SetState(245)
 		p.LatitudeUnits()
 	}
 
@@ -5073,7 +5595,7 @@ func (s *LatitudeUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{
 
 func (p *KnotParser) LatitudeUnits() (localctx ILatitudeUnitsContext) {
 	localctx = NewLatitudeUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 72, KnotParserRULE_latitudeUnits)
+	p.EnterRule(localctx, 80, KnotParserRULE_latitudeUnits)
 
 	defer func() {
 		p.ExitRule()
@@ -5093,9 +5615,9 @@ func (p *KnotParser) LatitudeUnits() (localctx ILatitudeUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(221)
+		p.SetState(247)
 
-		var _m = p.Match(KnotParserT__62)
+		var _m = p.Match(KnotParserT__50)
 
 		localctx.(*LatitudeUnitsContext).op = _m
 	}
@@ -5183,7 +5705,7 @@ func (s *LongitudeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Longitude() (localctx ILongitudeContext) {
 	localctx = NewLongitudeContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 74, KnotParserRULE_longitude)
+	p.EnterRule(localctx, 82, KnotParserRULE_longitude)
 
 	defer func() {
 		p.ExitRule()
@@ -5203,11 +5725,11 @@ func (p *KnotParser) Longitude() (localctx ILongitudeContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(223)
-		p.Match(KnotParserT__63)
+		p.SetState(249)
+		p.Match(KnotParserT__66)
 	}
 	{
-		p.SetState(224)
+		p.SetState(250)
 		p.LongitudeUnits()
 	}
 
@@ -5295,7 +5817,7 @@ func (s *LongitudeUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface
 
 func (p *KnotParser) LongitudeUnits() (localctx ILongitudeUnitsContext) {
 	localctx = NewLongitudeUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 76, KnotParserRULE_longitudeUnits)
+	p.EnterRule(localctx, 84, KnotParserRULE_longitudeUnits)
 
 	defer func() {
 		p.ExitRule()
@@ -5315,9 +5837,9 @@ func (p *KnotParser) LongitudeUnits() (localctx ILongitudeUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(226)
+		p.SetState(252)
 
-		var _m = p.Match(KnotParserT__62)
+		var _m = p.Match(KnotParserT__50)
 
 		localctx.(*LongitudeUnitsContext).op = _m
 	}
@@ -5405,7 +5927,7 @@ func (s *SpeedContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Speed() (localctx ISpeedContext) {
 	localctx = NewSpeedContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 78, KnotParserRULE_speed)
+	p.EnterRule(localctx, 86, KnotParserRULE_speed)
 
 	defer func() {
 		p.ExitRule()
@@ -5425,11 +5947,11 @@ func (p *KnotParser) Speed() (localctx ISpeedContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(228)
-		p.Match(KnotParserT__64)
+		p.SetState(254)
+		p.Match(KnotParserT__67)
 	}
 	{
-		p.SetState(229)
+		p.SetState(255)
 		p.SpeedUnits()
 	}
 
@@ -5517,7 +6039,7 @@ func (s *SpeedUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) SpeedUnits() (localctx ISpeedUnitsContext) {
 	localctx = NewSpeedUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 80, KnotParserRULE_speedUnits)
+	p.EnterRule(localctx, 88, KnotParserRULE_speedUnits)
 	var _la int
 
 	defer func() {
@@ -5538,7 +6060,7 @@ func (p *KnotParser) SpeedUnits() (localctx ISpeedUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(231)
+		p.SetState(257)
 
 		var _lt = p.GetTokenStream().LT(1)
 
@@ -5546,7 +6068,7 @@ func (p *KnotParser) SpeedUnits() (localctx ISpeedUnitsContext) {
 
 		_la = p.GetTokenStream().LA(1)
 
-		if !(_la == KnotParserT__27 || (((_la-66)&-(0x1f+1)) == 0 && ((1<<uint((_la-66)))&((1<<(KnotParserT__65-66))|(1<<(KnotParserT__66-66))|(1<<(KnotParserT__67-66)))) != 0)) {
+		if !(_la == KnotParserT__31 || (((_la-69)&-(0x1f+1)) == 0 && ((1<<uint((_la-69)))&((1<<(KnotParserT__68-69))|(1<<(KnotParserT__69-69))|(1<<(KnotParserT__70-69)))) != 0)) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
 			localctx.(*SpeedUnitsContext).op = _ri
@@ -5639,7 +6161,7 @@ func (s *VolumeflowContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Volumeflow() (localctx IVolumeflowContext) {
 	localctx = NewVolumeflowContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 82, KnotParserRULE_volumeflow)
+	p.EnterRule(localctx, 90, KnotParserRULE_volumeflow)
 
 	defer func() {
 		p.ExitRule()
@@ -5659,11 +6181,11 @@ func (p *KnotParser) Volumeflow() (localctx IVolumeflowContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(233)
-		p.Match(KnotParserT__68)
+		p.SetState(259)
+		p.Match(KnotParserT__71)
 	}
 	{
-		p.SetState(234)
+		p.SetState(260)
 		p.VolumeflowUnits()
 	}
 
@@ -5751,7 +6273,7 @@ func (s *VolumeflowUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interfac
 
 func (p *KnotParser) VolumeflowUnits() (localctx IVolumeflowUnitsContext) {
 	localctx = NewVolumeflowUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 84, KnotParserRULE_volumeflowUnits)
+	p.EnterRule(localctx, 92, KnotParserRULE_volumeflowUnits)
 	var _la int
 
 	defer func() {
@@ -5772,7 +6294,7 @@ func (p *KnotParser) VolumeflowUnits() (localctx IVolumeflowUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(236)
+		p.SetState(262)
 
 		var _lt = p.GetTokenStream().LT(1)
 
@@ -5780,7 +6302,7 @@ func (p *KnotParser) VolumeflowUnits() (localctx IVolumeflowUnitsContext) {
 
 		_la = p.GetTokenStream().LA(1)
 
-		if !(_la == KnotParserT__22 || (((_la-70)&-(0x1f+1)) == 0 && ((1<<uint((_la-70)))&((1<<(KnotParserT__69-70))|(1<<(KnotParserT__70-70))|(1<<(KnotParserT__71-70))|(1<<(KnotParserT__72-70))|(1<<(KnotParserT__73-70)))) != 0)) {
+		if !(_la == KnotParserT__26 || (((_la-73)&-(0x1f+1)) == 0 && ((1<<uint((_la-73)))&((1<<(KnotParserT__72-73))|(1<<(KnotParserT__73-73))|(1<<(KnotParserT__74-73))|(1<<(KnotParserT__75-73))|(1<<(KnotParserT__76-73)))) != 0)) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
 			localctx.(*VolumeflowUnitsContext).op = _ri
@@ -5873,7 +6395,7 @@ func (s *EnergyContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *KnotParser) Energy() (localctx IEnergyContext) {
 	localctx = NewEnergyContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 86, KnotParserRULE_energy)
+	p.EnterRule(localctx, 94, KnotParserRULE_energy)
 
 	defer func() {
 		p.ExitRule()
@@ -5893,11 +6415,11 @@ func (p *KnotParser) Energy() (localctx IEnergyContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(238)
-		p.Match(KnotParserT__74)
+		p.SetState(264)
+		p.Match(KnotParserT__77)
 	}
 	{
-		p.SetState(239)
+		p.SetState(265)
 		p.EnergyUnits()
 	}
 
@@ -5985,7 +6507,7 @@ func (s *EnergyUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} 
 
 func (p *KnotParser) EnergyUnits() (localctx IEnergyUnitsContext) {
 	localctx = NewEnergyUnitsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 88, KnotParserRULE_energyUnits)
+	p.EnterRule(localctx, 96, KnotParserRULE_energyUnits)
 	var _la int
 
 	defer func() {
@@ -6006,7 +6528,7 @@ func (p *KnotParser) EnergyUnits() (localctx IEnergyUnitsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(241)
+		p.SetState(267)
 
 		var _lt = p.GetTokenStream().LT(1)
 
@@ -6014,7 +6536,7 @@ func (p *KnotParser) EnergyUnits() (localctx IEnergyUnitsContext) {
 
 		_la = p.GetTokenStream().LA(1)
 
-		if !(((_la-76)&-(0x1f+1)) == 0 && ((1<<uint((_la-76)))&((1<<(KnotParserT__75-76))|(1<<(KnotParserT__76-76))|(1<<(KnotParserT__77-76))|(1<<(KnotParserT__78-76))|(1<<(KnotParserT__79-76))|(1<<(KnotParserT__80-76)))) != 0) {
+		if !(((_la-79)&-(0x1f+1)) == 0 && ((1<<uint((_la-79)))&((1<<(KnotParserT__78-79))|(1<<(KnotParserT__79-79))|(1<<(KnotParserT__80-79))|(1<<(KnotParserT__81-79))|(1<<(KnotParserT__82-79))|(1<<(KnotParserT__83-79)))) != 0) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
 			localctx.(*EnergyUnitsContext).op = _ri

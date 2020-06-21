@@ -31,7 +31,6 @@ func (k *knotListener) EnterStart(ctx *generated.StartContext) {
 	}
 }
 
-
 func (k *knotListener) EnterDefinition(ctx *generated.DefinitionContext) {
 	k.name = ctx.IDENTIFIER().GetText()
 }
@@ -41,19 +40,32 @@ func (k *knotListener) EnterThingContent(ctx *generated.ThingContentContext) {
 }
 
 func (k *knotListener) ExitThingContent(ctx *generated.ThingContentContext) {
-	k.sensors[k.currentSensor].name = ctx.IDENTIFIER().GetText()
 	k.sensors[k.currentSensor].isSensor = ctx.GetOp().GetTokenType() == generated.KnotParserSENSOR
 	k.currentSensor++
+}
+
+func (k *knotListener) ExitBoolOpt(ctx *generated.BoolOptContext) {
+	k.sensors[k.currentSensor].value = "bool"
+	k.sensors[k.currentSensor].name = ctx.IDENTIFIER().GetText()
+	k.sensors[k.currentSensor].typeUnit = ctx.GetOp().GetText()
+}
+
+func (k *knotListener) ExitNumberOpt(ctx *generated.NumberOptContext) {
+	k.sensors[k.currentSensor].value = ctx.GetOp().GetText();
+	k.sensors[k.currentSensor].name = ctx.IDENTIFIER().GetText()
+}
+
+
+func (k *knotListener) ExitBytesOpt(ctx *generated.BytesOptContext) {
+	k.sensors[k.currentSensor].value = "bytes"
+	k.sensors[k.currentSensor].name = ctx.IDENTIFIER().GetText()
+	k.sensors[k.currentSensor].typeUnit = "command"
 }
 
 const unitFmt = "%s in %s"
 
 func (k *knotListener) ExitUnitTypeOptions(ctx *generated.UnitTypeOptionsContext) {
 	fmt.Sscanf(ctx.GetText(), unitFmt, &k.sensors[k.currentSensor].typeUnit, &k.sensors[k.currentSensor].unit)
-}
-
-func (k *knotListener) ExitValueOptions(ctx *generated.ValueOptionsContext) {
-	k.sensors[k.currentSensor].value = ctx.GetOp().GetText();
 }
 
 func compileToZephyr(l knotListener, path string) {
@@ -122,7 +134,7 @@ func compileToZephyr(l knotListener, path string) {
 	setupOut := ""
 
 	for id, sensor := range l.sensors {
-		unit := sensor.unit
+		unit := strings.ToUpper(sensor.typeUnit + "_" +sensor.unit)
 		if sensor.unit == "" {
 			unit = "NOT_APPLICABLE"
 		}

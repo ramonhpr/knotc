@@ -44,11 +44,35 @@ func (s *BaseKnotListener) EnterValueOptions(ctx *ValueOptionsContext) {}
 // ExitValueOptions is called when production valueOptions is exited.
 func (s *BaseKnotListener) ExitValueOptions(ctx *ValueOptionsContext) {}
 
+// EnterBoolOpt is called when production boolOpt is entered.
+func (s *BaseKnotListener) EnterBoolOpt(ctx *BoolOptContext) {}
+
+// ExitBoolOpt is called when production boolOpt is exited.
+func (s *BaseKnotListener) ExitBoolOpt(ctx *BoolOptContext) {}
+
+// EnterNumberOpt is called when production numberOpt is entered.
+func (s *BaseKnotListener) EnterNumberOpt(ctx *NumberOptContext) {}
+
+// ExitNumberOpt is called when production numberOpt is exited.
+func (s *BaseKnotListener) ExitNumberOpt(ctx *NumberOptContext) {}
+
+// EnterBytesOpt is called when production bytesOpt is entered.
+func (s *BaseKnotListener) EnterBytesOpt(ctx *BytesOptContext) {}
+
+// ExitBytesOpt is called when production bytesOpt is exited.
+func (s *BaseKnotListener) ExitBytesOpt(ctx *BytesOptContext) {}
+
 // EnterUnitTypeOptions is called when production unitTypeOptions is entered.
 func (s *BaseKnotListener) EnterUnitTypeOptions(ctx *UnitTypeOptionsContext) {}
 
 // ExitUnitTypeOptions is called when production unitTypeOptions is exited.
 func (s *BaseKnotListener) ExitUnitTypeOptions(ctx *UnitTypeOptionsContext) {}
+
+// EnterLogicUnits is called when production logicUnits is entered.
+func (s *BaseKnotListener) EnterLogicUnits(ctx *LogicUnitsContext) {}
+
+// ExitLogicUnits is called when production logicUnits is exited.
+func (s *BaseKnotListener) ExitLogicUnits(ctx *LogicUnitsContext) {}
 
 // EnterVoltage is called when production voltage is entered.
 func (s *BaseKnotListener) EnterVoltage(ctx *VoltageContext) {}

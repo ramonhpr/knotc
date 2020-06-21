@@ -23,7 +23,23 @@ func (v *BaseKnotVisitor) VisitValueOptions(ctx *ValueOptionsContext) interface{
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseKnotVisitor) VisitBoolOpt(ctx *BoolOptContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitNumberOpt(ctx *NumberOptContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitBytesOpt(ctx *BytesOptContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseKnotVisitor) VisitUnitTypeOptions(ctx *UnitTypeOptionsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitLogicUnits(ctx *LogicUnitsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 

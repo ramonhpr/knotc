@@ -8,11 +8,6 @@ END_CHAR: ';';
 WS  :   [ \t\r\n\u000C]+ -> skip;
 COMMENT :   '/*' .*? '*/' -> skip;
 LINE_COMMENT    :   '//' ~[\r\n]* -> skip;
-// Values
-BOOL: 'bool';
-INT: 'int';
-FLOAT: 'float';
-BYTES: 'bytes';
 
 // TYPES
 RELATIVEHUMIDITY: 'relativehumidity';
@@ -35,11 +30,15 @@ ID: DecimalLit;
 // Rules
 start: definition+ EOF;
 definition: THING IDENTIFIER '{' thingContent+ '}';
-thingContent: op=(SENSOR|ACTUATOR) valueOptions IDENTIFIER '(' unitTypeOptions ')' END_CHAR;
-valueOptions: op=(BOOL | INT | FLOAT | BYTES);
+thingContent: op=(SENSOR|ACTUATOR) valueOptions;
+valueOptions: boolOpt | numberOpt | bytesOpt;
+boolOpt: 'bool' IDENTIFIER '(' op=(SWITCH | PRESENCE) ')' END_CHAR;
+numberOpt: op=('int' | 'float') IDENTIFIER '(' unitTypeOptions ')' END_CHAR;
+bytesOpt: 'bytes' IDENTIFIER '(' COMMAND ')' END_CHAR;
 unitTypeOptions: ( voltage | current | resistance | power | temperature | luminosity | 
 time| mass | pressure | distance | angle | volume | area | rain | density | latitude | longitude | 
-speed | volumeflow | energy | RELATIVEHUMIDITY| SWITCH | PRESENCE | COMMAND);
+speed | volumeflow | energy | RELATIVEHUMIDITY);
+logicUnits: SWITCH | PRESENCE | COMMAND;
 voltage: 'voltage in ' voltagesUnits;
 voltagesUnits: op=('V' | 'mV' | 'kV');
 current: 'current in ' currentUnits;
@@ -61,7 +60,7 @@ pressureUnits: op=('Pa' | 'psi' | 'bar');
 distance: 'distance in ' distanceUnits;
 distanceUnits: op=('m' | 'cm' | 'mi' | 'in');
 angle: 'angle in ' angleUnits;
-angleUnits: op=('deg' | 'rad');
+angleUnits: op=('degree' | 'rad');
 volume: 'volume in ' volumeUnits;
 volumeUnits: op=('l' | 'gal' | 'ml' | 'floz');
 area: 'area in ' areaUnits;

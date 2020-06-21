@@ -19,8 +19,20 @@ type KnotListener interface {
 	// EnterValueOptions is called when entering the valueOptions production.
 	EnterValueOptions(c *ValueOptionsContext)
 
+	// EnterBoolOpt is called when entering the boolOpt production.
+	EnterBoolOpt(c *BoolOptContext)
+
+	// EnterNumberOpt is called when entering the numberOpt production.
+	EnterNumberOpt(c *NumberOptContext)
+
+	// EnterBytesOpt is called when entering the bytesOpt production.
+	EnterBytesOpt(c *BytesOptContext)
+
 	// EnterUnitTypeOptions is called when entering the unitTypeOptions production.
 	EnterUnitTypeOptions(c *UnitTypeOptionsContext)
+
+	// EnterLogicUnits is called when entering the logicUnits production.
+	EnterLogicUnits(c *LogicUnitsContext)
 
 	// EnterVoltage is called when entering the voltage production.
 	EnterVoltage(c *VoltageContext)
@@ -154,8 +166,20 @@ type KnotListener interface {
 	// ExitValueOptions is called when exiting the valueOptions production.
 	ExitValueOptions(c *ValueOptionsContext)
 
+	// ExitBoolOpt is called when exiting the boolOpt production.
+	ExitBoolOpt(c *BoolOptContext)
+
+	// ExitNumberOpt is called when exiting the numberOpt production.
+	ExitNumberOpt(c *NumberOptContext)
+
+	// ExitBytesOpt is called when exiting the bytesOpt production.
+	ExitBytesOpt(c *BytesOptContext)
+
 	// ExitUnitTypeOptions is called when exiting the unitTypeOptions production.
 	ExitUnitTypeOptions(c *UnitTypeOptionsContext)
+
+	// ExitLogicUnits is called when exiting the logicUnits production.
+	ExitLogicUnits(c *LogicUnitsContext)
 
 	// ExitVoltage is called when exiting the voltage production.
 	ExitVoltage(c *VoltageContext)
