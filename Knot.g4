@@ -19,22 +19,24 @@ COMMAND: 'command';
 fragment Letter :[A-Za-z_];
 fragment DecimalDigit   :[0-9]+;
 fragment DecimalLit:   [1-9] DecimalDigit*;
-fragment NUMBER: ('0' .. '9') + ('.' ('0' .. '9') +)?;
-fragment UNSIGNED_INTEGER: ('0' .. '9')+;
 fragment Ident   : Letter (Letter | DecimalDigit)*;
 IDENTIFIER     : Ident ;
-ID: DecimalLit;
-
-// TODO: Add rule to data config event flag
+UNSIGNED_INTEGER: DecimalLit;
+NUMBER: DecimalLit ('.' DecimalLit)*;
 
 // Rules
-start: definition+ EOF;
-definition: THING IDENTIFIER '{' thingContent+ '}';
+start: things+=definition+ EOF;
+definition: THING IDENTIFIER '{' sensors+=thingContent+ '}';
 thingContent: op=(SENSOR|ACTUATOR) valueOptions;
+config: configChanges? configTime? configUpper? configLower?;
+configChanges: 'at changes';
+configTime: 'each ' number=UNSIGNED_INTEGER 's';
+configUpper: 'greater than ' number=UNSIGNED_INTEGER;
+configLower: 'lower than ' number=UNSIGNED_INTEGER;
 valueOptions: boolOpt | numberOpt | bytesOpt;
-boolOpt: 'bool' IDENTIFIER '(' op=(SWITCH | PRESENCE) ')' END_CHAR;
-numberOpt: op=('int' | 'float') IDENTIFIER '(' unitTypeOptions ')' END_CHAR;
-bytesOpt: 'bytes' IDENTIFIER '(' COMMAND ')' END_CHAR;
+boolOpt: 'bool' IDENTIFIER '(' op=(SWITCH | PRESENCE) ')' 'sends' configChanges? configTime? END_CHAR;
+numberOpt: op=('int' | 'float') IDENTIFIER '(' unitTypeOptions ')' 'sends' config END_CHAR;
+bytesOpt: 'bytes' IDENTIFIER '(' COMMAND ')' 'sends' configChanges? configTime? END_CHAR;
 unitTypeOptions: ( voltage | current | resistance | power | temperature | luminosity | 
 time| mass | pressure | distance | angle | volume | area | rain | density | latitude | longitude | 
 speed | volumeflow | energy | RELATIVEHUMIDITY);

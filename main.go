@@ -11,9 +11,28 @@ import (
 	"./generated"
 )
 
+type KnotConfigType int
+
+const (
+	KnotChanges = iota
+	KnotTime
+	KnotUpper
+	KnotLower
+)
+
+func (k KnotConfigType) String() string {
+	return [...]string{"CHANGE", "TIME", "UPPER_THRESHOLD", "LOWER_THRESHOLD"}[k]
+}
+
+type knotConfig struct {
+	typeConfig KnotConfigType
+	value string
+}
+
 type sensorType struct {
 	name, value, typeUnit, unit string
 	isSensor bool
+	configs []knotConfig
 }
 
 type knotListener struct {
@@ -21,7 +40,6 @@ type knotListener struct {
 	sensors []sensorType
 	currentSensor int
 	name string
-
 }
 
 
@@ -48,6 +66,13 @@ func (k *knotListener) ExitBoolOpt(ctx *generated.BoolOptContext) {
 	k.sensors[k.currentSensor].value = "bool"
 	k.sensors[k.currentSensor].name = ctx.IDENTIFIER().GetText()
 	k.sensors[k.currentSensor].typeUnit = ctx.GetOp().GetText()
+	if ctx.ConfigChanges() != nil{
+		k.sensors[k.currentSensor].configs = append(k.sensors[k.currentSensor].configs, knotConfig{typeConfig: KnotChanges})
+	}
+
+	if tmp := ctx.ConfigTime(); tmp != nil {
+		k.sensors[k.currentSensor].configs = append(k.sensors[k.currentSensor].configs, knotConfig{typeConfig: KnotTime, value: tmp.GetNumber().GetText()})
+	}
 }
 
 func (k *knotListener) ExitNumberOpt(ctx *generated.NumberOptContext) {
@@ -56,10 +81,36 @@ func (k *knotListener) ExitNumberOpt(ctx *generated.NumberOptContext) {
 }
 
 
+func (k *knotListener) ExitConfig(ctx *generated.ConfigContext) {
+	if ctx.ConfigChanges() != nil{
+		k.sensors[k.currentSensor].configs =  append(k.sensors[k.currentSensor].configs, knotConfig{typeConfig: KnotChanges})
+	}
+
+	if tmp := ctx.ConfigTime(); tmp != nil {
+		k.sensors[k.currentSensor].configs =  append(k.sensors[k.currentSensor].configs, knotConfig{typeConfig: KnotTime, value: tmp.GetNumber().GetText()})
+	}
+
+	if tmp := ctx.ConfigUpper(); tmp != nil {
+		k.sensors[k.currentSensor].configs =  append(k.sensors[k.currentSensor].configs, knotConfig{typeConfig: KnotUpper, value: tmp.GetNumber().GetText()})
+	}
+
+	if tmp := ctx.ConfigLower(); tmp != nil {
+		k.sensors[k.currentSensor].configs =  append(k.sensors[k.currentSensor].configs, knotConfig{typeConfig: KnotLower, value: tmp.GetNumber().GetText()})
+	}
+}
+
+
 func (k *knotListener) ExitBytesOpt(ctx *generated.BytesOptContext) {
 	k.sensors[k.currentSensor].value = "bytes"
 	k.sensors[k.currentSensor].name = ctx.IDENTIFIER().GetText()
 	k.sensors[k.currentSensor].typeUnit = "command"
+	if ctx.ConfigChanges() != nil{
+		k.sensors[k.currentSensor].configs =  append(k.sensors[k.currentSensor].configs, knotConfig{typeConfig: KnotChanges})
+	}
+
+	if tmp := ctx.ConfigTime(); tmp != nil {
+		k.sensors[k.currentSensor].configs =  append(k.sensors[k.currentSensor].configs, knotConfig{typeConfig: KnotTime, value: tmp.GetNumber().GetText()})
+	}
 }
 
 const unitFmt = "%s in %s"
@@ -138,7 +189,20 @@ func compileToZephyr(l knotListener, path string) {
 		if sensor.unit == "" {
 			unit = "NOT_APPLICABLE"
 		}
-		setupOut += fmt.Sprintf(setupContentFmt + "\n\n", strings.ToLower(sensor.name), strings.ToUpper(sensor.name), id, strings.ToUpper(sensor.typeUnit), strings.ToUpper(sensor.value), unit)
+		configParameter := ""
+		for i, config := range sensor.configs {
+			configParameter += fmt.Sprintf("KNOT_EVT_FLAG_%s", config.typeConfig)
+			if config.typeConfig != KnotChanges {
+				configParameter += fmt.Sprintf(", %s", config.value)
+			}
+
+			if i + 1 != len(sensor.configs) {
+				configParameter += fmt.Sprintf(", ")
+			} else {
+				configParameter += fmt.Sprintf(", NULL")
+			}
+		}
+		setupOut += fmt.Sprintf(setupContentFmt + "\n\n", strings.ToLower(sensor.name), strings.ToUpper(sensor.name), id, strings.ToUpper(sensor.typeUnit), strings.ToUpper(sensor.value), unit, configParameter)
 	}
 
 	last, err := ioutil.ReadFile(path + "setup_loop_template.c")

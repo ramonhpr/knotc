@@ -16,6 +16,21 @@ type KnotListener interface {
 	// EnterThingContent is called when entering the thingContent production.
 	EnterThingContent(c *ThingContentContext)
 
+	// EnterConfig is called when entering the config production.
+	EnterConfig(c *ConfigContext)
+
+	// EnterConfigChanges is called when entering the configChanges production.
+	EnterConfigChanges(c *ConfigChangesContext)
+
+	// EnterConfigTime is called when entering the configTime production.
+	EnterConfigTime(c *ConfigTimeContext)
+
+	// EnterConfigUpper is called when entering the configUpper production.
+	EnterConfigUpper(c *ConfigUpperContext)
+
+	// EnterConfigLower is called when entering the configLower production.
+	EnterConfigLower(c *ConfigLowerContext)
+
 	// EnterValueOptions is called when entering the valueOptions production.
 	EnterValueOptions(c *ValueOptionsContext)
 
@@ -162,6 +177,21 @@ type KnotListener interface {
 
 	// ExitThingContent is called when exiting the thingContent production.
 	ExitThingContent(c *ThingContentContext)
+
+	// ExitConfig is called when exiting the config production.
+	ExitConfig(c *ConfigContext)
+
+	// ExitConfigChanges is called when exiting the configChanges production.
+	ExitConfigChanges(c *ConfigChangesContext)
+
+	// ExitConfigTime is called when exiting the configTime production.
+	ExitConfigTime(c *ConfigTimeContext)
+
+	// ExitConfigUpper is called when exiting the configUpper production.
+	ExitConfigUpper(c *ConfigUpperContext)
+
+	// ExitConfigLower is called when exiting the configLower production.
+	ExitConfigLower(c *ConfigLowerContext)
 
 	// ExitValueOptions is called when exiting the valueOptions production.
 	ExitValueOptions(c *ValueOptionsContext)

@@ -19,6 +19,26 @@ func (v *BaseKnotVisitor) VisitThingContent(ctx *ThingContentContext) interface{
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseKnotVisitor) VisitConfig(ctx *ConfigContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitConfigChanges(ctx *ConfigChangesContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitConfigTime(ctx *ConfigTimeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitConfigUpper(ctx *ConfigUpperContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseKnotVisitor) VisitConfigLower(ctx *ConfigLowerContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseKnotVisitor) VisitValueOptions(ctx *ValueOptionsContext) interface{} {
 	return v.VisitChildren(ctx)
 }

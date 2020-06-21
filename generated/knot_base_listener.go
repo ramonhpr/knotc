@@ -38,6 +38,36 @@ func (s *BaseKnotListener) EnterThingContent(ctx *ThingContentContext) {}
 // ExitThingContent is called when production thingContent is exited.
 func (s *BaseKnotListener) ExitThingContent(ctx *ThingContentContext) {}
 
+// EnterConfig is called when production config is entered.
+func (s *BaseKnotListener) EnterConfig(ctx *ConfigContext) {}
+
+// ExitConfig is called when production config is exited.
+func (s *BaseKnotListener) ExitConfig(ctx *ConfigContext) {}
+
+// EnterConfigChanges is called when production configChanges is entered.
+func (s *BaseKnotListener) EnterConfigChanges(ctx *ConfigChangesContext) {}
+
+// ExitConfigChanges is called when production configChanges is exited.
+func (s *BaseKnotListener) ExitConfigChanges(ctx *ConfigChangesContext) {}
+
+// EnterConfigTime is called when production configTime is entered.
+func (s *BaseKnotListener) EnterConfigTime(ctx *ConfigTimeContext) {}
+
+// ExitConfigTime is called when production configTime is exited.
+func (s *BaseKnotListener) ExitConfigTime(ctx *ConfigTimeContext) {}
+
+// EnterConfigUpper is called when production configUpper is entered.
+func (s *BaseKnotListener) EnterConfigUpper(ctx *ConfigUpperContext) {}
+
+// ExitConfigUpper is called when production configUpper is exited.
+func (s *BaseKnotListener) ExitConfigUpper(ctx *ConfigUpperContext) {}
+
+// EnterConfigLower is called when production configLower is entered.
+func (s *BaseKnotListener) EnterConfigLower(ctx *ConfigLowerContext) {}
+
+// ExitConfigLower is called when production configLower is exited.
+func (s *BaseKnotListener) ExitConfigLower(ctx *ConfigLowerContext) {}
+
 // EnterValueOptions is called when production valueOptions is entered.
 func (s *BaseKnotListener) EnterValueOptions(ctx *ValueOptionsContext) {}
 

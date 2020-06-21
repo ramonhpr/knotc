@@ -16,6 +16,21 @@ type KnotVisitor interface {
 	// Visit a parse tree produced by KnotParser#thingContent.
 	VisitThingContent(ctx *ThingContentContext) interface{}
 
+	// Visit a parse tree produced by KnotParser#config.
+	VisitConfig(ctx *ConfigContext) interface{}
+
+	// Visit a parse tree produced by KnotParser#configChanges.
+	VisitConfigChanges(ctx *ConfigChangesContext) interface{}
+
+	// Visit a parse tree produced by KnotParser#configTime.
+	VisitConfigTime(ctx *ConfigTimeContext) interface{}
+
+	// Visit a parse tree produced by KnotParser#configUpper.
+	VisitConfigUpper(ctx *ConfigUpperContext) interface{}
+
+	// Visit a parse tree produced by KnotParser#configLower.
+	VisitConfigLower(ctx *ConfigLowerContext) interface{}
+
 	// Visit a parse tree produced by KnotParser#valueOptions.
 	VisitValueOptions(ctx *ValueOptionsContext) interface{}
 
