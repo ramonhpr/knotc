@@ -45,7 +45,7 @@ void setup(void)
 
 	/* KNoT config */
 	if (knot_data_register({{ .ID }}, "{{ .Name }}", KNOT_TYPE_ID_{{ .TypeUnit | Up }},
-				KNOT_VALUE_TYPE_{{ .Value | Up }}, {{ if .Unit }}KNOT_UNIT_{{ .Unit | Up }},{{ else }}KNOT_UNIT_NOT_APPLICABLE,{{ end }}
+				KNOT_VALUE_TYPE_{{ .Value | UpRaw }}, {{ if .Unit }}KNOT_UNIT_{{ .Unit | Up }},{{ else }}KNOT_UNIT_NOT_APPLICABLE,{{ end }}
 				&{{ .Name | Lower }}, sizeof({{ .Name | Lower }}), {{if .IsSensor}}NULL{{else}}write_{{ .Name | Lower }}{{end}}, NULL) < 1)
 		LOG_ERR("{{.Name}} failed to register");
 	success = knot_data_config({{ .ID }}, {{ range .Configs }}KNOT_EVT_FLAG_{{ .Type }}, {{if .Value}}{{ .Value }}, {{end}}{{end}}NULL);

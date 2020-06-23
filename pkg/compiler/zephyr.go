@@ -31,6 +31,14 @@ func (zc *ZephyrCompiler) Compile(input string) {
 	funcs := template.FuncMap{
 		"Up": strings.ToUpper,
 		"Lower": strings.ToLower,
+		"UpRaw": func (x string) string {
+			if x == "char[]" {
+				return "RAW"
+
+			} else {
+				return strings.ToUpper(x)
+			}
+		},
 	}
 	tmp.Funcs(funcs)
 	
