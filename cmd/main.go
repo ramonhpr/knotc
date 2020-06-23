@@ -2,7 +2,7 @@ package main
 
 import (
 	"flag"
-	"fmt"
+	"log"
 	"io/ioutil"
 	"os"
 
@@ -10,18 +10,27 @@ import (
 )
 
 func main() {
+	log.SetFlags(0)
+	oldUsage := flag.Usage
+	flag.Usage = func() {
+		oldUsage()
+		log.Println(os.Args[0], " filePath outputFolder")
+	}
 	flag.Parse()
 	if len(flag.Args()) < 2 {
 		flag.Usage()
-		fmt.Println(os.Args[0], " filePath outputFolder")
 		os.Exit(1)
 	}
 
 	filePath := flag.Arg(0)
+	if _, err := os.Stat(filePath); os.IsNotExist(err) {
+		log.Fatalf("file %s not exists", filePath)
+	}
+
 	outFile := flag.Arg(1)
 	data, err := ioutil.ReadFile(filePath)
 	if err != nil {
-		panic(err)
+		log.Fatalf("Couldn't read file %s. Reason: %s", filePath, err)
 	}
 	compiler := compiler.NewZephyrCompiler(outFile)
 	compiler.Compile(string(data))
