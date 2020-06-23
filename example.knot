@@ -1,0 +1,9 @@
+thing blink {
+	actuator bool LED (switch) sends at changes;
+	sensor float DHT (temperature in F) sends each 110s;
+	actuator int MOTOR (angle in rad) sends greater than 30 lower than 10;
+}
+
+//thing <name> {
+//	<sensor|actuator> <bool|float|int|bytes> <sensorName> (<unitType> in <unit>) sends <at changes|sends each Id<s|min|h>|greater than Id|lower than Id>
+//}

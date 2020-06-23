@@ -41,6 +41,7 @@ unitTypeOptions: ( voltage | current | resistance | power | temperature | lumino
 time| mass | pressure | distance | angle | volume | area | rain | density | latitude | longitude | 
 speed | volumeflow | energy | RELATIVEHUMIDITY);
 logicUnits: SWITCH | PRESENCE | COMMAND;
+// TODO: improve unit
 voltage: 'voltage in ' voltagesUnits;
 voltagesUnits: op=('V' | 'mV' | 'kV');
 current: 'current in ' currentUnits;
