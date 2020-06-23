@@ -35,7 +35,7 @@ func (k *ListenerImpl) ExitDefinition(ctx *generated.DefinitionContext) {
 }
 
 func (k *ListenerImpl) EnterThingContent(ctx *generated.ThingContentContext) {
-	k.Things[k.currentThing].Sensors = append(k.Things[k.currentThing].Sensors, model.Sensor{ID: k.currentSensor})
+	k.Things[k.currentThing].Sensors = append(k.Things[k.currentThing].Sensors, model.DataItem{ID: k.currentSensor})
 }
 
 func (k *ListenerImpl) ExitThingContent(ctx *generated.ThingContentContext) {

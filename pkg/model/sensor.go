@@ -1,7 +1,7 @@
 package model
 
-// Sensor is the sensor associated to knot
-type Sensor struct {
+// DataItem is the data item that the thing is associated in knot
+type DataItem struct {
 	Name, Value, TypeUnit, Unit, DefaultValue string
 	ID uint
 	IsSensor bool
