@@ -55,7 +55,7 @@ func (zc *ZephyrCompiler) Compile(input string) {
 		if err != nil {
 			panic(err)
 		}
-		err = zc.outputTopSrcDir(thing.Name, "proj.conf", prjConf)
+		err = zc.outputTopSrcDir(thing.Name, "prj.conf", prjConf)
 		if err != nil {
 			panic(err)
 		}
