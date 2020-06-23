@@ -36,16 +36,21 @@ struct device *gpio_{{ .Name | Lower }};
 {{end}}
 void setup(void)
 {
+	bool success;
 	{{range .Sensors}}
 	/* Peripherals control */
 	gpio_{{ .Name | Lower }} = device_get_binding({{ .Name | Up }}_PORT);
-	gpio_pin_configure(gpio_{{ .Name | Lower }}, {{ .Name | Up }}_PIN, GPIO_DIR_OUT);
+	/* Uncomment and configure the GPIO {{.Name}} here */
+	//gpio_pin_configure(gpio_{{ .Name | Lower }}, {{ .Name | Up }}_PIN, /* GPIO_*/);
 
 	/* KNoT config */
-	knot_data_register({{ .ID }}, "{{ .Name }}", KNOT_TYPE_ID_{{ .TypeUnit | Up }},
+	if (knot_data_register({{ .ID }}, "{{ .Name }}", KNOT_TYPE_ID_{{ .TypeUnit | Up }},
 				KNOT_VALUE_TYPE_{{ .Value | Up }}, {{ if .Unit }}KNOT_UNIT_{{ .Unit | Up }},{{ else }}KNOT_UNIT_NOT_APPLICABLE,{{ end }}
-				&{{ .Name | Lower }}, sizeof({{ .Name | Lower }}), write_{{ .Name | Lower }}, NULL);
-	knot_data_config({{ .ID }}, {{ range .Configs }}KNOT_EVT_FLAG_{{ .Type }}, {{if .Value}}{{ .Value }}, {{end}}{{end}}NULL);
+				&{{ .Name | Lower }}, sizeof({{ .Name | Lower }}), write_{{ .Name | Lower }}, NULL) < 1)
+		LOG_ERR("{{.Name}} failed to register");
+	success = knot_data_config({{ .ID }}, {{ range .Configs }}KNOT_EVT_FLAG_{{ .Type }}, {{if .Value}}{{ .Value }}, {{end}}{{end}}NULL);
+	if (!success)
+		LOG_ERR("{{.Name}} failed to configure");
 	{{end}}
 }
 void loop(void)
