@@ -489,16 +489,6 @@ func (s *StartContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *StartContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitStart(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Start() (localctx IStartContext) {
 	localctx = NewStartContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 0, KnotParserRULE_start)
@@ -554,6 +544,12 @@ type IDefinitionContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
+	// GetName returns the name token.
+	GetName() antlr.Token
+
+	// SetName sets the name token.
+	SetName(antlr.Token)
+
 	// Get_thingContent returns the _thingContent rule contexts.
 	Get_thingContent() IThingContentContext
 
@@ -573,6 +569,7 @@ type IDefinitionContext interface {
 type DefinitionContext struct {
 	*antlr.BaseParserRuleContext
 	parser        antlr.Parser
+	name          antlr.Token
 	_thingContent IThingContentContext
 	sensors       []IThingContentContext
 }
@@ -598,6 +595,10 @@ func NewDefinitionContext(parser antlr.Parser, parent antlr.ParserRuleContext, i
 }
 
 func (s *DefinitionContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *DefinitionContext) GetName() antlr.Token { return s.name }
+
+func (s *DefinitionContext) SetName(v antlr.Token) { s.name = v }
 
 func (s *DefinitionContext) Get_thingContent() IThingContentContext { return s._thingContent }
 
@@ -658,16 +659,6 @@ func (s *DefinitionContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *DefinitionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitDefinition(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Definition() (localctx IDefinitionContext) {
 	localctx = NewDefinitionContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 2, KnotParserRULE_definition)
@@ -696,7 +687,10 @@ func (p *KnotParser) Definition() (localctx IDefinitionContext) {
 	}
 	{
 		p.SetState(116)
-		p.Match(KnotParserIDENTIFIER)
+
+		var _m = p.Match(KnotParserIDENTIFIER)
+
+		localctx.(*DefinitionContext).name = _m
 	}
 	{
 		p.SetState(117)
@@ -735,11 +729,11 @@ type IThingContentContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
-	// GetOp returns the op token.
-	GetOp() antlr.Token
+	// GetSensorType returns the sensorType token.
+	GetSensorType() antlr.Token
 
-	// SetOp sets the op token.
-	SetOp(antlr.Token)
+	// SetSensorType sets the sensorType token.
+	SetSensorType(antlr.Token)
 
 	// IsThingContentContext differentiates from other interfaces.
 	IsThingContentContext()
@@ -747,8 +741,8 @@ type IThingContentContext interface {
 
 type ThingContentContext struct {
 	*antlr.BaseParserRuleContext
-	parser antlr.Parser
-	op     antlr.Token
+	parser     antlr.Parser
+	sensorType antlr.Token
 }
 
 func NewEmptyThingContentContext() *ThingContentContext {
@@ -773,9 +767,9 @@ func NewThingContentContext(parser antlr.Parser, parent antlr.ParserRuleContext,
 
 func (s *ThingContentContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *ThingContentContext) GetOp() antlr.Token { return s.op }
+func (s *ThingContentContext) GetSensorType() antlr.Token { return s.sensorType }
 
-func (s *ThingContentContext) SetOp(v antlr.Token) { s.op = v }
+func (s *ThingContentContext) SetSensorType(v antlr.Token) { s.sensorType = v }
 
 func (s *ThingContentContext) ValueOptions() IValueOptionsContext {
 	var t = s.GetTypedRuleContext(reflect.TypeOf((*IValueOptionsContext)(nil)).Elem(), 0)
@@ -815,16 +809,6 @@ func (s *ThingContentContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *ThingContentContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitThingContent(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) ThingContent() (localctx IThingContentContext) {
 	localctx = NewThingContentContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 4, KnotParserRULE_thingContent)
@@ -852,14 +836,14 @@ func (p *KnotParser) ThingContent() (localctx IThingContentContext) {
 
 		var _lt = p.GetTokenStream().LT(1)
 
-		localctx.(*ThingContentContext).op = _lt
+		localctx.(*ThingContentContext).sensorType = _lt
 
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == KnotParserSENSOR || _la == KnotParserACTUATOR) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
-			localctx.(*ThingContentContext).op = _ri
+			localctx.(*ThingContentContext).sensorType = _ri
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
 			p.Consume()
@@ -968,16 +952,6 @@ func (s *ConfigContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *ConfigContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitConfig(s)
-	}
-}
-
-func (s *ConfigContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitConfig(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -1108,16 +1082,6 @@ func (s *ConfigChangesContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *ConfigChangesContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitConfigChanges(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) ConfigChanges() (localctx IConfigChangesContext) {
 	localctx = NewConfigChangesContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 8, KnotParserRULE_configChanges)
@@ -1217,16 +1181,6 @@ func (s *ConfigTimeContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *ConfigTimeContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitConfigTime(s)
-	}
-}
-
-func (s *ConfigTimeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitConfigTime(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -1343,16 +1297,6 @@ func (s *ConfigUpperContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *ConfigUpperContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitConfigUpper(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) ConfigUpper() (localctx IConfigUpperContext) {
 	localctx = NewConfigUpperContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 12, KnotParserRULE_configUpper)
@@ -1459,16 +1403,6 @@ func (s *ConfigLowerContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *ConfigLowerContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitConfigLower(s)
-	}
-}
-
-func (s *ConfigLowerContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitConfigLower(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -1596,16 +1530,6 @@ func (s *ValueOptionsContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *ValueOptionsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitValueOptions(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) ValueOptions() (localctx IValueOptionsContext) {
 	localctx = NewValueOptionsContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 16, KnotParserRULE_valueOptions)
@@ -1665,11 +1589,17 @@ type IBoolOptContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
-	// GetOp returns the op token.
-	GetOp() antlr.Token
+	// GetName returns the name token.
+	GetName() antlr.Token
 
-	// SetOp sets the op token.
-	SetOp(antlr.Token)
+	// GetTypeUnit returns the typeUnit token.
+	GetTypeUnit() antlr.Token
+
+	// SetName sets the name token.
+	SetName(antlr.Token)
+
+	// SetTypeUnit sets the typeUnit token.
+	SetTypeUnit(antlr.Token)
 
 	// IsBoolOptContext differentiates from other interfaces.
 	IsBoolOptContext()
@@ -1677,8 +1607,9 @@ type IBoolOptContext interface {
 
 type BoolOptContext struct {
 	*antlr.BaseParserRuleContext
-	parser antlr.Parser
-	op     antlr.Token
+	parser   antlr.Parser
+	name     antlr.Token
+	typeUnit antlr.Token
 }
 
 func NewEmptyBoolOptContext() *BoolOptContext {
@@ -1703,16 +1634,20 @@ func NewBoolOptContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 
 func (s *BoolOptContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *BoolOptContext) GetOp() antlr.Token { return s.op }
+func (s *BoolOptContext) GetName() antlr.Token { return s.name }
 
-func (s *BoolOptContext) SetOp(v antlr.Token) { s.op = v }
+func (s *BoolOptContext) GetTypeUnit() antlr.Token { return s.typeUnit }
 
-func (s *BoolOptContext) IDENTIFIER() antlr.TerminalNode {
-	return s.GetToken(KnotParserIDENTIFIER, 0)
-}
+func (s *BoolOptContext) SetName(v antlr.Token) { s.name = v }
+
+func (s *BoolOptContext) SetTypeUnit(v antlr.Token) { s.typeUnit = v }
 
 func (s *BoolOptContext) END_CHAR() antlr.TerminalNode {
 	return s.GetToken(KnotParserEND_CHAR, 0)
+}
+
+func (s *BoolOptContext) IDENTIFIER() antlr.TerminalNode {
+	return s.GetToken(KnotParserIDENTIFIER, 0)
 }
 
 func (s *BoolOptContext) SWITCH() antlr.TerminalNode {
@@ -1763,16 +1698,6 @@ func (s *BoolOptContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *BoolOptContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitBoolOpt(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) BoolOpt() (localctx IBoolOptContext) {
 	localctx = NewBoolOptContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 18, KnotParserRULE_boolOpt)
@@ -1801,7 +1726,10 @@ func (p *KnotParser) BoolOpt() (localctx IBoolOptContext) {
 	}
 	{
 		p.SetState(158)
-		p.Match(KnotParserIDENTIFIER)
+
+		var _m = p.Match(KnotParserIDENTIFIER)
+
+		localctx.(*BoolOptContext).name = _m
 	}
 	{
 		p.SetState(159)
@@ -1812,14 +1740,14 @@ func (p *KnotParser) BoolOpt() (localctx IBoolOptContext) {
 
 		var _lt = p.GetTokenStream().LT(1)
 
-		localctx.(*BoolOptContext).op = _lt
+		localctx.(*BoolOptContext).typeUnit = _lt
 
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == KnotParserSWITCH || _la == KnotParserPRESENCE) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
-			localctx.(*BoolOptContext).op = _ri
+			localctx.(*BoolOptContext).typeUnit = _ri
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
 			p.Consume()
@@ -1870,11 +1798,17 @@ type INumberOptContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
-	// GetOp returns the op token.
-	GetOp() antlr.Token
+	// GetTypeValue returns the typeValue token.
+	GetTypeValue() antlr.Token
 
-	// SetOp sets the op token.
-	SetOp(antlr.Token)
+	// GetName returns the name token.
+	GetName() antlr.Token
+
+	// SetTypeValue sets the typeValue token.
+	SetTypeValue(antlr.Token)
+
+	// SetName sets the name token.
+	SetName(antlr.Token)
 
 	// IsNumberOptContext differentiates from other interfaces.
 	IsNumberOptContext()
@@ -1882,8 +1816,9 @@ type INumberOptContext interface {
 
 type NumberOptContext struct {
 	*antlr.BaseParserRuleContext
-	parser antlr.Parser
-	op     antlr.Token
+	parser    antlr.Parser
+	typeValue antlr.Token
+	name      antlr.Token
 }
 
 func NewEmptyNumberOptContext() *NumberOptContext {
@@ -1908,13 +1843,13 @@ func NewNumberOptContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 
 func (s *NumberOptContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *NumberOptContext) GetOp() antlr.Token { return s.op }
+func (s *NumberOptContext) GetTypeValue() antlr.Token { return s.typeValue }
 
-func (s *NumberOptContext) SetOp(v antlr.Token) { s.op = v }
+func (s *NumberOptContext) GetName() antlr.Token { return s.name }
 
-func (s *NumberOptContext) IDENTIFIER() antlr.TerminalNode {
-	return s.GetToken(KnotParserIDENTIFIER, 0)
-}
+func (s *NumberOptContext) SetTypeValue(v antlr.Token) { s.typeValue = v }
+
+func (s *NumberOptContext) SetName(v antlr.Token) { s.name = v }
 
 func (s *NumberOptContext) UnitTypeOptions() IUnitTypeOptionsContext {
 	var t = s.GetTypedRuleContext(reflect.TypeOf((*IUnitTypeOptionsContext)(nil)).Elem(), 0)
@@ -1940,6 +1875,10 @@ func (s *NumberOptContext) END_CHAR() antlr.TerminalNode {
 	return s.GetToken(KnotParserEND_CHAR, 0)
 }
 
+func (s *NumberOptContext) IDENTIFIER() antlr.TerminalNode {
+	return s.GetToken(KnotParserIDENTIFIER, 0)
+}
+
 func (s *NumberOptContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -1957,16 +1896,6 @@ func (s *NumberOptContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *NumberOptContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitNumberOpt(s)
-	}
-}
-
-func (s *NumberOptContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitNumberOpt(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -1997,14 +1926,14 @@ func (p *KnotParser) NumberOpt() (localctx INumberOptContext) {
 
 		var _lt = p.GetTokenStream().LT(1)
 
-		localctx.(*NumberOptContext).op = _lt
+		localctx.(*NumberOptContext).typeValue = _lt
 
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == KnotParserT__11 || _la == KnotParserT__12) {
 			var _ri = p.GetErrorHandler().RecoverInline(p)
 
-			localctx.(*NumberOptContext).op = _ri
+			localctx.(*NumberOptContext).typeValue = _ri
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
 			p.Consume()
@@ -2012,7 +1941,10 @@ func (p *KnotParser) NumberOpt() (localctx INumberOptContext) {
 	}
 	{
 		p.SetState(172)
-		p.Match(KnotParserIDENTIFIER)
+
+		var _m = p.Match(KnotParserIDENTIFIER)
+
+		localctx.(*NumberOptContext).name = _m
 	}
 	{
 		p.SetState(173)
@@ -2049,6 +1981,12 @@ type IBytesOptContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
+	// GetName returns the name token.
+	GetName() antlr.Token
+
+	// SetName sets the name token.
+	SetName(antlr.Token)
+
 	// IsBytesOptContext differentiates from other interfaces.
 	IsBytesOptContext()
 }
@@ -2056,6 +1994,7 @@ type IBytesOptContext interface {
 type BytesOptContext struct {
 	*antlr.BaseParserRuleContext
 	parser antlr.Parser
+	name   antlr.Token
 }
 
 func NewEmptyBytesOptContext() *BytesOptContext {
@@ -2080,9 +2019,9 @@ func NewBytesOptContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 
 func (s *BytesOptContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *BytesOptContext) IDENTIFIER() antlr.TerminalNode {
-	return s.GetToken(KnotParserIDENTIFIER, 0)
-}
+func (s *BytesOptContext) GetName() antlr.Token { return s.name }
+
+func (s *BytesOptContext) SetName(v antlr.Token) { s.name = v }
 
 func (s *BytesOptContext) COMMAND() antlr.TerminalNode {
 	return s.GetToken(KnotParserCOMMAND, 0)
@@ -2090,6 +2029,10 @@ func (s *BytesOptContext) COMMAND() antlr.TerminalNode {
 
 func (s *BytesOptContext) END_CHAR() antlr.TerminalNode {
 	return s.GetToken(KnotParserEND_CHAR, 0)
+}
+
+func (s *BytesOptContext) IDENTIFIER() antlr.TerminalNode {
+	return s.GetToken(KnotParserIDENTIFIER, 0)
 }
 
 func (s *BytesOptContext) ConfigChanges() IConfigChangesContext {
@@ -2132,16 +2075,6 @@ func (s *BytesOptContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *BytesOptContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitBytesOpt(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) BytesOpt() (localctx IBytesOptContext) {
 	localctx = NewBytesOptContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 22, KnotParserRULE_bytesOpt)
@@ -2170,7 +2103,10 @@ func (p *KnotParser) BytesOpt() (localctx IBytesOptContext) {
 	}
 	{
 		p.SetState(181)
-		p.Match(KnotParserIDENTIFIER)
+
+		var _m = p.Match(KnotParserIDENTIFIER)
+
+		localctx.(*BytesOptContext).name = _m
 	}
 	{
 		p.SetState(182)
@@ -2480,16 +2416,6 @@ func (s *UnitTypeOptionsContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *UnitTypeOptionsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitUnitTypeOptions(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) UnitTypeOptions() (localctx IUnitTypeOptionsContext) {
 	localctx = NewUnitTypeOptionsContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 24, KnotParserRULE_unitTypeOptions)
@@ -2718,16 +2644,6 @@ func (s *LogicUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *LogicUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitLogicUnits(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) LogicUnits() (localctx ILogicUnitsContext) {
 	localctx = NewLogicUnitsContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 26, KnotParserRULE_logicUnits)
@@ -2833,16 +2749,6 @@ func (s *VoltageContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *VoltageContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitVoltage(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Voltage() (localctx IVoltageContext) {
 	localctx = NewVoltageContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 28, KnotParserRULE_voltage)
@@ -2942,16 +2848,6 @@ func (s *VoltagesUnitsContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *VoltagesUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitVoltagesUnits(s)
-	}
-}
-
-func (s *VoltagesUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitVoltagesUnits(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -3067,16 +2963,6 @@ func (s *CurrentContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *CurrentContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitCurrent(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Current() (localctx ICurrentContext) {
 	localctx = NewCurrentContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 32, KnotParserRULE_current)
@@ -3176,16 +3062,6 @@ func (s *CurrentUnitsContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *CurrentUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitCurrentUnits(s)
-	}
-}
-
-func (s *CurrentUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitCurrentUnits(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -3301,16 +3177,6 @@ func (s *ResistanceContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *ResistanceContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitResistance(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Resistance() (localctx IResistanceContext) {
 	localctx = NewResistanceContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 36, KnotParserRULE_resistance)
@@ -3410,16 +3276,6 @@ func (s *ResistanceUnitsContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *ResistanceUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitResistanceUnits(s)
-	}
-}
-
-func (s *ResistanceUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitResistanceUnits(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -3523,16 +3379,6 @@ func (s *PowerContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *PowerContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitPower(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Power() (localctx IPowerContext) {
 	localctx = NewPowerContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 40, KnotParserRULE_power)
@@ -3632,16 +3478,6 @@ func (s *PowerUnitsContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *PowerUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitPowerUnits(s)
-	}
-}
-
-func (s *PowerUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitPowerUnits(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -3757,16 +3593,6 @@ func (s *TemperatureContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *TemperatureContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitTemperature(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Temperature() (localctx ITemperatureContext) {
 	localctx = NewTemperatureContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 44, KnotParserRULE_temperature)
@@ -3866,16 +3692,6 @@ func (s *TemperatureUnitsContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *TemperatureUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitTemperatureUnits(s)
-	}
-}
-
-func (s *TemperatureUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitTemperatureUnits(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -3991,16 +3807,6 @@ func (s *LuminosityContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *LuminosityContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitLuminosity(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Luminosity() (localctx ILuminosityContext) {
 	localctx = NewLuminosityContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 48, KnotParserRULE_luminosity)
@@ -4100,16 +3906,6 @@ func (s *LuminosityUnitsContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *LuminosityUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitLuminosityUnits(s)
-	}
-}
-
-func (s *LuminosityUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitLuminosityUnits(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -4225,16 +4021,6 @@ func (s *TimeContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *TimeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitTime(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Time() (localctx ITimeContext) {
 	localctx = NewTimeContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 52, KnotParserRULE_time)
@@ -4334,16 +4120,6 @@ func (s *TimeUnitsContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *TimeUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitTimeUnits(s)
-	}
-}
-
-func (s *TimeUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitTimeUnits(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -4459,16 +4235,6 @@ func (s *MassContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *MassContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitMass(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Mass() (localctx IMassContext) {
 	localctx = NewMassContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 56, KnotParserRULE_mass)
@@ -4568,16 +4334,6 @@ func (s *MassUnitsContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *MassUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitMassUnits(s)
-	}
-}
-
-func (s *MassUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitMassUnits(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -4693,16 +4449,6 @@ func (s *PressureContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *PressureContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitPressure(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Pressure() (localctx IPressureContext) {
 	localctx = NewPressureContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 60, KnotParserRULE_pressure)
@@ -4802,16 +4548,6 @@ func (s *PressureUnitsContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *PressureUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitPressureUnits(s)
-	}
-}
-
-func (s *PressureUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitPressureUnits(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -4927,16 +4663,6 @@ func (s *DistanceContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *DistanceContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitDistance(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Distance() (localctx IDistanceContext) {
 	localctx = NewDistanceContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 64, KnotParserRULE_distance)
@@ -5036,16 +4762,6 @@ func (s *DistanceUnitsContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *DistanceUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitDistanceUnits(s)
-	}
-}
-
-func (s *DistanceUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitDistanceUnits(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -5161,16 +4877,6 @@ func (s *AngleContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *AngleContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitAngle(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Angle() (localctx IAngleContext) {
 	localctx = NewAngleContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 68, KnotParserRULE_angle)
@@ -5270,16 +4976,6 @@ func (s *AngleUnitsContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *AngleUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitAngleUnits(s)
-	}
-}
-
-func (s *AngleUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitAngleUnits(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -5395,16 +5091,6 @@ func (s *VolumeContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *VolumeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitVolume(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Volume() (localctx IVolumeContext) {
 	localctx = NewVolumeContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 72, KnotParserRULE_volume)
@@ -5504,16 +5190,6 @@ func (s *VolumeUnitsContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *VolumeUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitVolumeUnits(s)
-	}
-}
-
-func (s *VolumeUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitVolumeUnits(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -5629,16 +5305,6 @@ func (s *AreaContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *AreaContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitArea(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Area() (localctx IAreaContext) {
 	localctx = NewAreaContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 76, KnotParserRULE_area)
@@ -5738,16 +5404,6 @@ func (s *AreaUnitsContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *AreaUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitAreaUnits(s)
-	}
-}
-
-func (s *AreaUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitAreaUnits(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -5863,16 +5519,6 @@ func (s *RainContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *RainContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitRain(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Rain() (localctx IRainContext) {
 	localctx = NewRainContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 80, KnotParserRULE_rain)
@@ -5975,16 +5621,6 @@ func (s *RainUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *RainUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitRainUnits(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) RainUnits() (localctx IRainUnitsContext) {
 	localctx = NewRainUnitsContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 82, KnotParserRULE_rainUnits)
@@ -6082,16 +5718,6 @@ func (s *DensityContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *DensityContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitDensity(s)
-	}
-}
-
-func (s *DensityContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitDensity(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -6197,16 +5823,6 @@ func (s *DensityUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *DensityUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitDensityUnits(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) DensityUnits() (localctx IDensityUnitsContext) {
 	localctx = NewDensityUnitsContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 86, KnotParserRULE_densityUnits)
@@ -6304,16 +5920,6 @@ func (s *LatitudeContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *LatitudeContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitLatitude(s)
-	}
-}
-
-func (s *LatitudeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitLatitude(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -6419,16 +6025,6 @@ func (s *LatitudeUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *LatitudeUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitLatitudeUnits(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) LatitudeUnits() (localctx ILatitudeUnitsContext) {
 	localctx = NewLatitudeUnitsContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 90, KnotParserRULE_latitudeUnits)
@@ -6526,16 +6122,6 @@ func (s *LongitudeContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *LongitudeContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitLongitude(s)
-	}
-}
-
-func (s *LongitudeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitLongitude(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -6641,16 +6227,6 @@ func (s *LongitudeUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *LongitudeUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitLongitudeUnits(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) LongitudeUnits() (localctx ILongitudeUnitsContext) {
 	localctx = NewLongitudeUnitsContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 94, KnotParserRULE_longitudeUnits)
@@ -6748,16 +6324,6 @@ func (s *SpeedContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *SpeedContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitSpeed(s)
-	}
-}
-
-func (s *SpeedContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitSpeed(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -6860,16 +6426,6 @@ func (s *SpeedUnitsContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *SpeedUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitSpeedUnits(s)
-	}
-}
-
-func (s *SpeedUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitSpeedUnits(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -6985,16 +6541,6 @@ func (s *VolumeflowContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *VolumeflowContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitVolumeflow(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Volumeflow() (localctx IVolumeflowContext) {
 	localctx = NewVolumeflowContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 100, KnotParserRULE_volumeflow)
@@ -7094,16 +6640,6 @@ func (s *VolumeflowUnitsContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *VolumeflowUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitVolumeflowUnits(s)
-	}
-}
-
-func (s *VolumeflowUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitVolumeflowUnits(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
@@ -7219,16 +6755,6 @@ func (s *EnergyContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
-func (s *EnergyContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitEnergy(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
-}
-
 func (p *KnotParser) Energy() (localctx IEnergyContext) {
 	localctx = NewEnergyContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 104, KnotParserRULE_energy)
@@ -7328,16 +6854,6 @@ func (s *EnergyUnitsContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *EnergyUnitsContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(KnotListener); ok {
 		listenerT.ExitEnergyUnits(s)
-	}
-}
-
-func (s *EnergyUnitsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case KnotVisitor:
-		return t.VisitEnergyUnits(s)
-
-	default:
-		return t.VisitChildren(s)
 	}
 }
 
