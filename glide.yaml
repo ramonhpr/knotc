@@ -1,4 +1,4 @@
-package: .
+package: github.com/ramonhpr/knotc
 import:
 - package: github.com/antlr/antlr4
   version: ^4.8.0

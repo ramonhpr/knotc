@@ -1,12 +1,8 @@
-hash: c851f8f45d2e93b730798f8ac3f32e5ebdccd9bb929e8855ea7a1d994f856aee
-updated: 2020-06-22T17:31:58.781295512-03:00
+hash: 00d53392eff39207a11f888734489c501e60494c66d6d3b97addcf4b11749bf4
+updated: 2020-06-29T03:58:34.889974647-03:00
 imports:
 - name: github.com/antlr/antlr4
   version: 7a3f40bc341ddfb463d6e0aa1a6265064d020cb6
   subpackages:
   - runtime/Go/antlr
-- name: github.com/urfave/cli
-  version: d648edd48d89ef3a841b1ec75c2ebbd4de5f748f
-  subpackages:
-  - v2
 testImports: []

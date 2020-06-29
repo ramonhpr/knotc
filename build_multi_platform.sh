@@ -11,7 +11,7 @@ for targetOS in "${targetOSes[@]}"
 do
     for platform in "${platforms[@]}"
     do
-        output_name=$package_name'-'$targetOS'-'$platform'-'$version
+        output_name=$package_name'-'$targetOS'-'$platform'-'v$version
         if [ $targetOS = "windows" ]; then
             output_name+='.exe'
         fi
