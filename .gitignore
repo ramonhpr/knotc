@@ -1,2 +1,4 @@
 .antlr/
 vendor/
+build/
+knotc
