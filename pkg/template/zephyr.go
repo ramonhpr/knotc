@@ -12,15 +12,11 @@ This is a generated file
 #include <net/net_core.h>
 #include <logging/log.h>
 #include <device.h>
-#include <gpio.h>
 
 #include "knot.h"
 #include <knot/knot_types.h>
 #include <knot/knot_protocol.h>
-{{range .Sensors }}
-#define {{ .Name | Up }}_PORT		{{ .Name | Up }}_GPIO_CONTROLLER
-#define {{ .Name | Up }}_PIN		{{ .Name | Up }}_GPIO_PIN
-{{end}}
+
 LOG_MODULE_REGISTER({{ .Name }}, LOG_LEVEL_DBG);
 
 {{range .Sensors }}
@@ -38,10 +34,7 @@ void setup(void)
 {
 	bool success;
 	{{range .Sensors}}
-	/* Peripherals control */
-	gpio_{{ .Name | Lower }} = device_get_binding({{ .Name | Up }}_PORT);
-	/* Uncomment and configure the GPIO {{.Name}} here */
-	//gpio_pin_configure(gpio_{{ .Name | Lower }}, {{ .Name | Up }}_PIN, /* GPIO_*/);
+	/* Configure the GPIO/device {{.Name}} here */
 
 	/* KNoT config */
 	if (knot_data_register({{ .ID }}, "{{ .Name }}", KNOT_TYPE_ID_{{ .TypeUnit | Up }},
