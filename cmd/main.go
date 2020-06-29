@@ -11,16 +11,23 @@ import (
 
 var version string
 
-func main() {
-	flagVersion := flag.Bool("version", false, "Print compiler version")
+func usage() {
+	log.Println(os.Args[0], "[options] filePath outputFolder")
+	log.Println("Options:")
+	flag.PrintDefaults()
+}
+
+var flagVersion bool
+func init() {
+	flag.BoolVar(&flagVersion, "version", false, "Print compiler version")
+	flag.BoolVar(&flagVersion, "v", false, "Print compiler version (shorthand)")
+	flag.Usage = usage
 	log.SetFlags(0)
-	oldUsage := flag.Usage
-	flag.Usage = func() {
-		oldUsage()
-		log.Println(os.Args[0], " filePath outputFolder")
-	}
+}
+
+func main() {
 	flag.Parse()
-	if *flagVersion {
+	if flagVersion {
 		log.Println(version)
 		os.Exit(0)
 	}
