@@ -9,7 +9,10 @@ import (
 	"github.com/ramonhpr/knotc/pkg/compiler"
 )
 
+var version string
+
 func main() {
+	flagVersion := flag.Bool("version", false, "Print compiler version")
 	log.SetFlags(0)
 	oldUsage := flag.Usage
 	flag.Usage = func() {
@@ -17,6 +20,11 @@ func main() {
 		log.Println(os.Args[0], " filePath outputFolder")
 	}
 	flag.Parse()
+	if *flagVersion {
+		log.Println(version)
+		os.Exit(0)
+	}
+
 	if len(flag.Args()) < 2 {
 		flag.Usage()
 		os.Exit(1)
