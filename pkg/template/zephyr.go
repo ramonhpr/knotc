@@ -7,15 +7,12 @@ This is a generated file
 
 */
 
-
 #include <zephyr.h>
-#include <net/net_core.h>
 #include <logging/log.h>
 #include <device.h>
 
 #include "knot.h"
-#include <knot/knot_types.h>
-#include <knot/knot_protocol.h>
+#include "knot_generated.h"
 
 LOG_MODULE_REGISTER({{ .Name }}, LOG_LEVEL_DBG);
 
@@ -32,22 +29,63 @@ struct device *gpio_{{ .Name | Lower }};
 {{end}}
 void setup(void)
 {
+	bool success = setup_knot();
+
+	if (!success)
+		LOG_ERR("KNoT failed to configure");
+
+	/* Configure the GPIO/devices bellow */
+}
+
+void loop(void)
+{
+}
+`
+	ZephyrGeneratedHeader=`/* knot_generated.h - KNoT Application Client
+This is a generated file. Don't Update it!!
+
+*/
+{{range .Sensors }}
+{{if .IsSensor}}{{else}}int write_{{ .Name | Lower }}(int id);{{end}}
+{{end}}
+
+bool setup_knot();
+
+/* Tracked values */
+{{range .Sensors }}
+extern {{ .Value }} {{ .Name | Lower }};
+{{end}}
+`
+	ZephyrGeneratedSource=`/* knot_generated.c - KNoT Application Client
+This is a generated file. Don't Update it!!
+
+*/
+#include <zephyr.h>
+#include <logging/log.h>
+#include <knot/knot_types.h>
+#include <knot/knot_protocol.h>
+
+#include "knot.h"
+#include "knot_generated.h"
+
+LOG_MODULE_REGISTER(knot_generated, LOG_LEVEL_ERR);
+
+bool setup_knot()
+{
 	bool success;
 	{{range .Sensors}}
-	/* Configure the GPIO/device {{.Name}} here */
-
-	/* KNoT config */
 	if (knot_data_register({{ .ID }}, "{{ .Name }}", KNOT_TYPE_ID_{{ .TypeUnit | Up }},
 				KNOT_VALUE_TYPE_{{ .Value | UpRaw }}, {{ if .Unit }}KNOT_UNIT_{{ .TypeUnit | Up }}_{{ .Unit | Up }},{{ else }}KNOT_UNIT_NOT_APPLICABLE,{{ end }}
 				&{{ .Name | Lower }}, sizeof({{ .Name | Lower }}), {{if .IsSensor}}NULL{{else}}write_{{ .Name | Lower }}{{end}}, NULL) < 1)
 		LOG_ERR("{{.Name}} failed to register");
+
 	success = knot_data_config({{ .ID }}, {{ range .Configs }}KNOT_EVT_FLAG_{{ .Type }}, {{if .Value}}{{ .Value }}, {{end}}{{end}}NULL);
-	if (!success)
+	if (!success) {
 		LOG_ERR("{{.Name}} failed to configure");
+		return false;
+	}
 	{{end}}
-}
-void loop(void)
-{
+	return true;
 }
 `
 	ZephyrPrjConf = `# KNoT
