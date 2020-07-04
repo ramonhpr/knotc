@@ -1,8 +1,0 @@
-hash: 00d53392eff39207a11f888734489c501e60494c66d6d3b97addcf4b11749bf4
-updated: 2020-06-29T03:58:34.889974647-03:00
-imports:
-- name: github.com/antlr/antlr4
-  version: 7a3f40bc341ddfb463d6e0aa1a6265064d020cb6
-  subpackages:
-  - runtime/Go/antlr
-testImports: []
