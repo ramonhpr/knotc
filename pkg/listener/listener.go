@@ -2,6 +2,8 @@ package listener
 
 import (
 	"fmt"
+	"log"
+
 	"github.com/ramonhpr/knotc/pkg/generated"
 	"github.com/ramonhpr/knotc/pkg/model"
 )
@@ -9,7 +11,7 @@ import (
 // ListenerImpl implements the knotListener interface
 type ListenerImpl struct {
 	*generated.BaseKnotListener
-	Things []model.Thing
+	Things map[string]*model.Thing
 	sensorIter chan *model.DataItem
 	currentSensor *model.DataItem
 }
@@ -18,9 +20,14 @@ const unitFmt = "%s in %s"
 
 func (k *ListenerImpl) EnterStart(ctx *generated.StartContext) {
 	k.sensorIter = make(chan *model.DataItem, len(ctx.GetThings())*255)
-	k.Things = make([]model.Thing, len(ctx.GetThings()))
-	for it, thing := range ctx.GetThings() {
-		newThing := model.Thing{Name: thing.GetName().GetText()}
+	k.Things = make(map[string]*model.Thing, len(ctx.GetThings()))
+	for _, thing := range ctx.GetThings() {
+		name := thing.GetName().GetText()
+		if _, value := k.Things[name]; value {
+			log.Fatalf("The thing name \"%s\" is already used", name)
+		}
+
+		newThing := model.Thing{Name: name}
 		newThing.Sensors = make([]model.DataItem, len(thing.GetSensors()))
 		for i, sensor := range thing.GetSensors() {
 			newSensor := model.DataItem{}
@@ -29,7 +36,7 @@ func (k *ListenerImpl) EnterStart(ctx *generated.StartContext) {
 			newThing.Sensors[i] = newSensor
 			k.sensorIter <- &newThing.Sensors[i] // Use channel as iterator
 		}
-		k.Things[it] = newThing
+		k.Things[name] = &newThing
 	}
 }
 
