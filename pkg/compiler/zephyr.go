@@ -112,5 +112,9 @@ func (zc *ZephyrCompiler) outputSrcDir(folderName, filename string, buf *bytes.B
 }
 
 func (zc *ZephyrCompiler) outputTopSrcDir(folderName, filename string, buf *bytes.Buffer) error {
-	return ioutil.WriteFile(filepath.Join(zc.outPath, "zephyr", folderName, filename), buf.Bytes(), 0644)
+	path := filepath.Join(zc.outPath, "zephyr", folderName, filename)
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		ioutil.WriteFile(path, buf.Bytes(), 0644)
+	}
+	return nil
 }
