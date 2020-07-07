@@ -47,7 +47,7 @@ func (zc *ZephyrCompiler) Compile(input string) {
 		x := struct {
 			Name string
 			Len int
-		}{Name: thing.Name, Len: len(thing.Sensors)}
+		}{Name: thing.Name, Len: len(thing.Items)}
 		prjConf := new(bytes.Buffer)
 		template.Must(tmp.Parse(tmplt.ZephyrPrjConf)).Execute(prjConf, x)
 

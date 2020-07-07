@@ -18,20 +18,24 @@ const unitFmt = "%s in %s"
 
 // EnterStart is started after after the syntax tree is parsed
 func (k *ListenerImpl) EnterStart(ctx *generated.StartContext) {
-	k.Things = make(map[string]*model.Thing, len(ctx.GetThings()))
+	k.Things = make(map[string]*model.Thing)
 	for _, defCtx := range ctx.GetThings() {
 		name := defCtx.GetName().GetText()
-		if _, value := k.Things[name]; value {
+		if _, hasItem := k.Things[name]; hasItem {
 			log.Fatalf("The thing name \"%s\" is already used", name)
 		}
 
 		newThing := model.Thing{Name: name}
-		newThing.Sensors = make([]model.DataItem, len(defCtx.GetSensors()))
+		newThing.Items = make(map[string]*model.DataItem)
 		for i, thingContentCtx := range defCtx.GetSensors() {
 			newDataItem := createNewDataItem(uint(i), thingContentCtx)
+			if _, hasItem := newThing.Items[newDataItem.Name]; hasItem {
+				log.Fatalf("The item name \"%s\" is already used", newDataItem.Name)
+			}
 
-			newThing.Sensors[i] = newDataItem
+			newThing.Items[newDataItem.Name] = &newDataItem
 		}
+
 		k.Things[name] = &newThing
 	}
 }

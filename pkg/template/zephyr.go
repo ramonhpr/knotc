@@ -16,11 +16,11 @@ This is a generated file
 
 LOG_MODULE_REGISTER({{ .Name }}, LOG_LEVEL_DBG);
 
-{{range .Sensors }}
+{{range .Items }}
 {{ .Value }} {{ .Name | Lower }} = {{ .DefaultValue }}; 			/* Tracked value */
 struct device *gpio_{{ .Name | Lower }};
 {{end}}
-{{range .Sensors }}
+{{range .Items }}
 {{if .IsSensor}}{{else}}int write_{{ .Name | Lower }}(int id)
 {
 	/* Add here specific code for your actuator */
@@ -45,14 +45,14 @@ void loop(void)
 This is a generated file. Don't Update it!!
 
 */
-{{range .Sensors }}
+{{range .Items }}
 {{if .IsSensor}}{{else}}int write_{{ .Name | Lower }}(int id);{{end}}
 {{end}}
 
 bool setup_knot();
 
 /* Tracked values */
-{{range .Sensors }}
+{{range .Items }}
 extern {{ .Value }} {{ .Name | Lower }};
 {{end}}
 `
@@ -73,7 +73,7 @@ LOG_MODULE_REGISTER(knot_generated, LOG_LEVEL_ERR);
 bool setup_knot()
 {
 	bool success;
-	{{range .Sensors}}
+	{{range .Items}}
 	if (knot_data_register({{ .ID }}, "{{ .Name }}", KNOT_TYPE_ID_{{ .TypeUnit | Up }},
 				KNOT_VALUE_TYPE_{{ .Value | UpRaw }}, {{ if .Unit }}KNOT_UNIT_{{ .TypeUnit | Up }}_{{ .Unit | Up }},{{ else }}KNOT_UNIT_NOT_APPLICABLE,{{ end }}
 				&{{ .Name | Lower }}, sizeof({{ .Name | Lower }}), {{if .IsSensor}}NULL{{else}}write_{{ .Name | Lower }}{{end}}, NULL) < 1)
