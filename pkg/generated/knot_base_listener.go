@@ -38,12 +38,6 @@ func (s *BaseKnotListener) EnterThingContent(ctx *ThingContentContext) {}
 // ExitThingContent is called when production thingContent is exited.
 func (s *BaseKnotListener) ExitThingContent(ctx *ThingContentContext) {}
 
-// EnterConfig is called when production config is entered.
-func (s *BaseKnotListener) EnterConfig(ctx *ConfigContext) {}
-
-// ExitConfig is called when production config is exited.
-func (s *BaseKnotListener) ExitConfig(ctx *ConfigContext) {}
-
 // EnterConfigChanges is called when production configChanges is entered.
 func (s *BaseKnotListener) EnterConfigChanges(ctx *ConfigChangesContext) {}
 
@@ -67,30 +61,6 @@ func (s *BaseKnotListener) EnterConfigLower(ctx *ConfigLowerContext) {}
 
 // ExitConfigLower is called when production configLower is exited.
 func (s *BaseKnotListener) ExitConfigLower(ctx *ConfigLowerContext) {}
-
-// EnterValueOptions is called when production valueOptions is entered.
-func (s *BaseKnotListener) EnterValueOptions(ctx *ValueOptionsContext) {}
-
-// ExitValueOptions is called when production valueOptions is exited.
-func (s *BaseKnotListener) ExitValueOptions(ctx *ValueOptionsContext) {}
-
-// EnterBoolOpt is called when production boolOpt is entered.
-func (s *BaseKnotListener) EnterBoolOpt(ctx *BoolOptContext) {}
-
-// ExitBoolOpt is called when production boolOpt is exited.
-func (s *BaseKnotListener) ExitBoolOpt(ctx *BoolOptContext) {}
-
-// EnterNumberOpt is called when production numberOpt is entered.
-func (s *BaseKnotListener) EnterNumberOpt(ctx *NumberOptContext) {}
-
-// ExitNumberOpt is called when production numberOpt is exited.
-func (s *BaseKnotListener) ExitNumberOpt(ctx *NumberOptContext) {}
-
-// EnterBytesOpt is called when production bytesOpt is entered.
-func (s *BaseKnotListener) EnterBytesOpt(ctx *BytesOptContext) {}
-
-// ExitBytesOpt is called when production bytesOpt is exited.
-func (s *BaseKnotListener) ExitBytesOpt(ctx *BytesOptContext) {}
 
 // EnterUnitTypeOptions is called when production unitTypeOptions is entered.
 func (s *BaseKnotListener) EnterUnitTypeOptions(ctx *UnitTypeOptionsContext) {}

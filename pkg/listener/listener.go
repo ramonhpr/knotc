@@ -12,93 +12,86 @@ import (
 type ListenerImpl struct {
 	*generated.BaseKnotListener
 	Things map[string]*model.Thing
-	sensorIter chan *model.DataItem
-	currentSensor *model.DataItem
 }
 
 const unitFmt = "%s in %s"
 
+// EnterStart is started after after the syntax tree is parsed
 func (k *ListenerImpl) EnterStart(ctx *generated.StartContext) {
-	k.sensorIter = make(chan *model.DataItem, len(ctx.GetThings())*255)
 	k.Things = make(map[string]*model.Thing, len(ctx.GetThings()))
-	for _, thing := range ctx.GetThings() {
-		name := thing.GetName().GetText()
+	for _, defCtx := range ctx.GetThings() {
+		name := defCtx.GetName().GetText()
 		if _, value := k.Things[name]; value {
 			log.Fatalf("The thing name \"%s\" is already used", name)
 		}
 
 		newThing := model.Thing{Name: name}
-		newThing.Sensors = make([]model.DataItem, len(thing.GetSensors()))
-		for i, sensor := range thing.GetSensors() {
-			newSensor := model.DataItem{}
-			newSensor.IsSensor = sensor.GetSensorType().GetTokenType() == generated.KnotParserSENSOR
-			newSensor.ID = uint(i)
-			newThing.Sensors[i] = newSensor
-			k.sensorIter <- &newThing.Sensors[i] // Use channel as iterator
+		newThing.Sensors = make([]model.DataItem, len(defCtx.GetSensors()))
+		for i, thingContentCtx := range defCtx.GetSensors() {
+			newDataItem := createNewDataItem(uint(i), thingContentCtx)
+
+			newThing.Sensors[i] = newDataItem
 		}
 		k.Things[name] = &newThing
 	}
 }
 
-func (k *ListenerImpl) EnterBoolOpt(ctx *generated.BoolOptContext) {
-	sensor := <- k.sensorIter
-	sensor.Value = "bool"
-	sensor.DefaultValue = "false"
-	sensor.Name = ctx.GetName().GetText()
-	sensor.TypeUnit = ctx.GetTypeUnit().GetText()
-	if ctx.ConfigChanges() != nil{
-		sensor.Configs = append(sensor.Configs, model.Config{Type: model.KnotChanges})
-	}
+func createNewDataItem(id uint, ctx generated.IThingContentContext) model.DataItem {
+	newDataItem := model.DataItem{}
+	newDataItem.IsSensor = ctx.GetSensorType().GetTokenType() == generated.KnotParserSENSOR
+	newDataItem.Value = ctx.GetTypeValue().GetText()
+	newDataItem.Name = ctx.GetName().GetText()
+	newDataItem.ID = id
+	s := ctx.(*generated.ThingContentContext)
+	setTypeValue(&newDataItem, ctx.GetTypeValue().GetTokenType(), ctx)
 
-	if tmp := ctx.ConfigTime(); tmp != nil {
-		sensor.Configs = append(sensor.Configs, model.Config{Type: model.KnotTime, Value: tmp.GetNumber().GetText()})
-	}
+	setConfigCommon(s, newDataItem)
 
-	k.currentSensor = sensor
+	return newDataItem
 }
 
-func (k *ListenerImpl) EnterNumberOpt(ctx *generated.NumberOptContext) {
-	sensor := <- k.sensorIter
-	sensor.Value = ctx.GetTypeValue().GetText();
-	sensor.DefaultValue = "0"
-	sensor.Name = ctx.GetName().GetText()
-	k.currentSensor = sensor
-}
-
-func (k *ListenerImpl) EnterBytesOpt(ctx *generated.BytesOptContext) {
-	sensor := <- k.sensorIter
-	sensor.Value = "char[]" // TODO: verify this
-	sensor.DefaultValue = "NULL"
-	sensor.Name = ctx.GetName().GetText()
-	sensor.TypeUnit = "command"
-	if ctx.ConfigChanges() != nil{
-		sensor.Configs =  append(sensor.Configs, model.Config{Type: model.KnotChanges})
+func setConfigCommon(s *generated.ThingContentContext, newDataItem model.DataItem) {
+	if s.ConfigChanges() != nil {
+		addOnConfigs(&newDataItem, model.KnotChanges, "")
 	}
 
-	if tmp := ctx.ConfigTime(); tmp != nil {
-		sensor.Configs =  append(sensor.Configs, model.Config{Type: model.KnotTime, Value: tmp.GetNumber().GetText()})
-	}
-	k.currentSensor = sensor
-}
-
-func (k *ListenerImpl) ExitConfig(ctx *generated.ConfigContext) {
-	if ctx.ConfigChanges() != nil {
-		k.currentSensor.Configs =  append(k.currentSensor.Configs, model.Config{Type: model.KnotChanges})
-	}
-
-	if tmp := ctx.ConfigTime(); tmp != nil {
-		k.currentSensor.Configs =  append(k.currentSensor.Configs, model.Config{Type: model.KnotTime, Value: tmp.GetNumber().GetText()})
-	}
-
-	if tmp := ctx.ConfigUpper(); tmp != nil {
-		k.currentSensor.Configs =  append(k.currentSensor.Configs, model.Config{Type: model.KnotUpper, Value: tmp.GetNumber().GetText()})
-	}
-
-	if tmp := ctx.ConfigLower(); tmp != nil {
-		k.currentSensor.Configs =  append(k.currentSensor.Configs, model.Config{Type: model.KnotLower, Value: tmp.GetNumber().GetText()})
+	if configTimeCtx := s.ConfigTime(); configTimeCtx != nil {
+		addOnConfigs(&newDataItem, model.KnotTime, configTimeCtx.GetNumber().GetText())
 	}
 }
 
-func (k *ListenerImpl) ExitUnitTypeOptions(ctx *generated.UnitTypeOptionsContext) {
-	fmt.Sscanf(ctx.GetText(), unitFmt, &k.currentSensor.TypeUnit, &k.currentSensor.Unit)
+func setTypeValue(data *model.DataItem, tokenType int, ctx generated.IThingContentContext) {
+	s := ctx.(*generated.ThingContentContext)
+
+	switch tokenType {
+	case generated.KnotLexerBOOL:
+		data.DefaultValue = "false"
+		data.TypeUnit = ctx.GetTypeUnit().GetText()
+	case generated.KnotLexerBYTES:
+		data.Value = "char[]" // TODO: verify this
+		data.DefaultValue = "NULL"
+		data.TypeUnit = s.COMMAND().GetText()
+	case generated.KnotLexerINT, generated.KnotLexerFLOAT:
+		data.DefaultValue = "0"
+		if configUpperCtx := s.ConfigUpper(); configUpperCtx != nil {
+			addOnConfigs(data, model.KnotUpper, configUpperCtx.GetNumber().GetText())
+		}
+
+		if configLowerCtx := s.ConfigLower(); configLowerCtx != nil {
+			addOnConfigs(data, model.KnotLower, configLowerCtx.GetNumber().GetText())
+		}
+
+		_, err := fmt.Sscanf(s.UnitTypeOptions().GetText(), unitFmt, &data.TypeUnit, &data.Unit)
+		if err != nil {
+			log.Fatalf("Unable to recognaize unit. Reason: %v", err)
+		}
+	}
+}
+
+func addOnConfigs(data *model.DataItem, configType model.ConfigType, value string) {
+	addConfigOnConfigs(data, model.Config{Type: configType, Value: value})
+}
+
+func addConfigOnConfigs(data *model.DataItem, config model.Config) {
+	data.Configs = append(data.Configs, config)
 }

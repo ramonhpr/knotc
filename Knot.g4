@@ -14,6 +14,10 @@ RELATIVEHUMIDITY: 'relativehumidity';
 SWITCH: 'switch';
 PRESENCE: 'presence';
 COMMAND: 'command';
+BOOL: 'bool';
+BYTES: 'bytes';
+INT: 'int';
+FLOAT: 'float';
 
 // Lexical elements
 fragment Letter :[A-Za-z_];
@@ -27,16 +31,15 @@ NUMBER: DecimalLit ('.' DecimalLit)*;
 // Rules
 start: things+=definition+ EOF;
 definition: THING name=IDENTIFIER '{' sensors+=thingContent+ '}';
-thingContent: sensorType=(SENSOR|ACTUATOR) valueOptions;
-config: configChanges? configTime? configUpper? configLower?;
+thingContent: sensorType=(SENSOR|ACTUATOR) (
+    typeValue=BOOL  name=IDENTIFIER '(' typeUnit=(SWITCH | PRESENCE) ')' 'sends'
+    |typeValue=BYTES name=IDENTIFIER '(' typeUnit=COMMAND ')' 'sends'
+    |typeValue=(INT | FLOAT) name=IDENTIFIER '(' unitTypeOptions ')' 'sends' configUpper? configLower?
+    ) configChanges? configTime? END_CHAR;
 configChanges: 'at changes';
 configTime: 'each ' number=UNSIGNED_INTEGER 's';
 configUpper: 'greater than ' number=UNSIGNED_INTEGER;
 configLower: 'lower than ' number=UNSIGNED_INTEGER;
-valueOptions: boolOpt | numberOpt | bytesOpt;
-boolOpt: 'bool' name=IDENTIFIER '(' typeUnit=(SWITCH | PRESENCE) ')' 'sends' configChanges? configTime? END_CHAR;
-numberOpt: typeValue=('int' | 'float') name=IDENTIFIER '(' unitTypeOptions ')' 'sends' config END_CHAR;
-bytesOpt: 'bytes' name=IDENTIFIER '(' COMMAND ')' 'sends' configChanges? configTime? END_CHAR;
 unitTypeOptions: ( voltage | current | resistance | power | temperature | luminosity | 
 time| mass | pressure | distance | angle | volume | area | rain | density | latitude | longitude | 
 speed | volumeflow | energy | RELATIVEHUMIDITY);

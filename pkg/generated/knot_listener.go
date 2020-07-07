@@ -16,9 +16,6 @@ type KnotListener interface {
 	// EnterThingContent is called when entering the thingContent production.
 	EnterThingContent(c *ThingContentContext)
 
-	// EnterConfig is called when entering the config production.
-	EnterConfig(c *ConfigContext)
-
 	// EnterConfigChanges is called when entering the configChanges production.
 	EnterConfigChanges(c *ConfigChangesContext)
 
@@ -30,18 +27,6 @@ type KnotListener interface {
 
 	// EnterConfigLower is called when entering the configLower production.
 	EnterConfigLower(c *ConfigLowerContext)
-
-	// EnterValueOptions is called when entering the valueOptions production.
-	EnterValueOptions(c *ValueOptionsContext)
-
-	// EnterBoolOpt is called when entering the boolOpt production.
-	EnterBoolOpt(c *BoolOptContext)
-
-	// EnterNumberOpt is called when entering the numberOpt production.
-	EnterNumberOpt(c *NumberOptContext)
-
-	// EnterBytesOpt is called when entering the bytesOpt production.
-	EnterBytesOpt(c *BytesOptContext)
 
 	// EnterUnitTypeOptions is called when entering the unitTypeOptions production.
 	EnterUnitTypeOptions(c *UnitTypeOptionsContext)
@@ -178,9 +163,6 @@ type KnotListener interface {
 	// ExitThingContent is called when exiting the thingContent production.
 	ExitThingContent(c *ThingContentContext)
 
-	// ExitConfig is called when exiting the config production.
-	ExitConfig(c *ConfigContext)
-
 	// ExitConfigChanges is called when exiting the configChanges production.
 	ExitConfigChanges(c *ConfigChangesContext)
 
@@ -192,18 +174,6 @@ type KnotListener interface {
 
 	// ExitConfigLower is called when exiting the configLower production.
 	ExitConfigLower(c *ConfigLowerContext)
-
-	// ExitValueOptions is called when exiting the valueOptions production.
-	ExitValueOptions(c *ValueOptionsContext)
-
-	// ExitBoolOpt is called when exiting the boolOpt production.
-	ExitBoolOpt(c *BoolOptContext)
-
-	// ExitNumberOpt is called when exiting the numberOpt production.
-	ExitNumberOpt(c *NumberOptContext)
-
-	// ExitBytesOpt is called when exiting the bytesOpt production.
-	ExitBytesOpt(c *BytesOptContext)
 
 	// ExitUnitTypeOptions is called when exiting the unitTypeOptions production.
 	ExitUnitTypeOptions(c *UnitTypeOptionsContext)
